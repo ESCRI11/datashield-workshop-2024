@@ -1,7 +1,18 @@
 ---
-title: "website"
+title: "Introduction"
+format: html
+engine: knitr
 ---
 
-This is a Quarto website.
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+# Introduction 
+
+This website has been created to host the materials and exercises for the Advanced Users' DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.
+
+On it you will find reading materials, setup tutorials, the workshop indications and practical exercises.
