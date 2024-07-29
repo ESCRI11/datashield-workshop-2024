@@ -19,4 +19,4 @@ format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true
+    number-sections: false

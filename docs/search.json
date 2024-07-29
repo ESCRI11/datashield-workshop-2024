@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "DataSHIELD Workshop",
     "section": "",
-    "text": "1 Introduction\nThis website has been created to host the materials and exercises for the Advanced Users’ DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.\nOn it you will find reading materials, setup tutorials, the workshop indications and practical exercises.",
+    "text": "Introduction\nThis website has been created to host the materials and exercises for the Advanced Users’ DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.\nOn it you will find reading materials, setup tutorials, the workshop indications and practical exercises.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -12,7 +12,7 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "2  About",
+    "title": "About",
     "section": "",
     "text": "About this site",
     "crumbs": [
