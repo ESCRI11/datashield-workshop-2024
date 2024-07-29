@@ -1,19 +1,21 @@
 project:
-  type: website
+  type: book
 
-website:
-  title: "website"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+book:
+  title: "DataSHIELD Workshop"
+  author: Juan R. González and Xavier Escribà Montagut
+  repo-url: https://github.com/ESCRI11/datashield-workshop-2024
+  repo-actions: [issue]
+  sharing: [twitter, linkedin]
+  favicon: favicon.ico
+  chapters:
+    - index.qmd
+    - about.qmd
+  sidebar:
+    logo: logo.svg
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-
