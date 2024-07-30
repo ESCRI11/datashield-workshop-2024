@@ -1,0 +1,65 @@
+---
+title: "Environment setup"
+format: html
+engine: knitr
+---
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+Along this section, we will go over the R packages (and versions) required to navigate through the workshop. There are many ways to write and develop R code, the most known is using [RStudio](https://posit.co/download/rstudio-desktop/), altough there are some alternatives such as [VSCode](https://code.visualstudio.com/) or [Positron](https://github.com/posit-dev/positron), feel free to use whichever you are most confident with.
+
+Regarding the R version, we recommend using the latest release (4.4.1).
+
+# R packages
+
+In order to develop, test and push our new DataSHIELD packages, we will require the following R packages to be installed:
+
++ [DSLite](https://cran.r-project.org/web/packages/DSLite/index.html): DataSHIELD Interface implementation for analyzing datasets living in the current R session (_very useful_ for developing DataSHIELD packages).
++ [DSI](https://cran.r-project.org/web/packages/DSI/index.html): The DataSHIELD Interface (DSI) handles the connections to the DataSHIELD servers.
++ [dsBase](https://www.datashield.org/help/community-packages/dsbase-package): Server package with the implementation of the base R functions.
++ [dsBaseClient](https://github.com/datashield/dsBaseClient): Client package with the implementation of the base R functions.
+
+::: {.callout-tip}
+## Homework before the workshop
+
+Please prepare your environment before the workshop so no precious time is lost setting up environments during it. Feel free to contact the authors if there are problems setting up the environment.
+:::
+
+## Installing the packages
+
+When using R, we are used to installing packages with the handy `install.packages()` function. However, by default it uses the CRAN repository, which does not contain all the required packages. For that reason we provide a quick code snippet to install all the required packages:
+
+```{r eval=FALSE}
+# Install DSLite
+install.packages("DSLite")
+
+# Install DSI
+install.packages("DSI")
+
+# Install dsBase
+install.packages(
+    'dsBase',
+    repos=c(
+        getOption('repos'),
+        'http://cran.datashield.org'
+    ),
+    dependencies=TRUE
+)
+
+# Install dsBaseClient
+install.packages(
+    'dsBaseClient',
+    repos=c(
+        getOption('repos'),
+        'http://cran.datashield.org'
+    ),
+    dependencies=TRUE
+)
+```
+
+With that, your environment will be ready to take on the workshop. Nevertheless, please read the next sessions to familiarize with R package development if you are not already.

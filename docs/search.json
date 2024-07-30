@@ -4,9 +4,29 @@
     "href": "index.html",
     "title": "DataSHIELD Workshop",
     "section": "",
-    "text": "Introduction\nThis website has been created to host the materials and exercises for the Advanced Users’ DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.\nOn it you will find reading materials, setup tutorials, the workshop indications and practical exercises.",
+    "text": "Introduction\nThis website has been created to host the materials and exercises for the Advanced Users’ DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.\nOn it you will find reading materials, setup tutorials, the workshop indications and practical exercises.\n\n\nGetting started\nBefore the workshop we suggest the atendants to take a look at the “Environment setup” and “Get up to speed” sections. This way they will have their computers with the right software installed to follow the workshop.\nDue the nature of this workshop, the attendants are expected to have some notions of R package development, to cover the basics we included a section titled “R packages 101”, if you are not familiar with R package development please take a look before the workshop.\n\n\nSchedule\nTo be delivered.\n\n\nAcknowledgements\nThis work is funded by XXX and XXX. Materials developed by Juan R. González (ISGlobal) and Xavier Escribà Montagut (BigOmics Analytics SA).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "env_setup.html",
+    "href": "env_setup.html",
+    "title": "Environment setup",
+    "section": "",
+    "text": "R packages\nIn order to develop, test and push our new DataSHIELD packages, we will require the following R packages to be installed:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Environment setup</span>"
+    ]
+  },
+  {
+    "objectID": "env_setup.html#installing-the-packages",
+    "href": "env_setup.html#installing-the-packages",
+    "title": "Environment setup",
+    "section": "Installing the packages",
+    "text": "Installing the packages\nWhen using R, we are used to installing packages with the handy install.packages() function. However, by default it uses the CRAN repository, which does not contain all the required packages. For that reason we provide a quick code snippet to install all the required packages:\n\n# Install DSLite\ninstall.packages(\"DSLite\")\n\n# Install DSI\ninstall.packages(\"DSI\")\n\n# Install dsBase\ninstall.packages(\n    'dsBase',\n    repos=c(\n        getOption('repos'),\n        'http://cran.datashield.org'\n    ),\n    dependencies=TRUE\n)\n\n# Install dsBaseClient\ninstall.packages(\n    'dsBaseClient',\n    repos=c(\n        getOption('repos'),\n        'http://cran.datashield.org'\n    ),\n    dependencies=TRUE\n)\n\nWith that, your environment will be ready to take on the workshop. Nevertheless, please read the next sessions to familiarize with R package development if you are not already.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Environment setup</span>"
     ]
   },
   {
@@ -16,7 +36,7 @@
     "section": "",
     "text": "About this site",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>About</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>About</span>"
     ]
   }
 ]

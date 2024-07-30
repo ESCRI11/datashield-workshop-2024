@@ -16,3 +16,17 @@ p {
 This website has been created to host the materials and exercises for the Advanced Users' DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.
 
 On it you will find reading materials, setup tutorials, the workshop indications and practical exercises.
+
+# Getting started
+
+Before the workshop we suggest the atendants to take a look at the “Environment setup” and “Get up to speed” sections. This way they will have their computers with the right software installed to follow the workshop.
+
+Due the nature of this workshop, the attendants are expected to have some notions of R package development, to cover the basics we included a section titled "R packages 101", if you are not familiar with R package development please take a look before the workshop.
+
+# Schedule
+
+To be delivered.
+
+# Acknowledgements
+
+This work is funded by XXX and XXX. Materials developed by Juan R. González (ISGlobal) and Xavier Escribà Montagut (BigOmics Analytics SA).
