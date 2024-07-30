@@ -1,0 +1,26 @@
+---
+title: "Get up to speed"
+format: html
+engine: knitr
+---
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+This workshop has been concived as an Advanced workshop to provide a guide to develop new DataSHIELD packages. Nevertheless, it may happend that not so experienced users/developers enroll on the workshop or happen to find this online material without prior experience. It is for that matter that this section is included, to provide a basis of knowledge about DataSHIELD before embarking on this short but steep journey.
+
+Here, we provide different reading materials that will be useful to create a solid basis about DataSHIELD.
+
++ [DataSHIELD paper](https://academic.oup.com/ije/article/43/6/1929/707730?login=true): Description of what is DataSHIELD.
++ [DataSHIELD wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview): Materials about DataSHIELD including:
+    + Beginner material
+    + Recorded DataSHIELD workshops
+    + Information on current release of DataSHIELD
++ [resource book](https://isglobal-brge.github.io/resource_bookdown/): In this book you will find information about:
+    + DataSHIELD (Section 5)
+
+Also, a shameless plug ^[From Xavier Escribà], if any reader finds this material is not enough, I encourage reading my [PhD thesis](https://www.tdx.cat/handle/10803/691737#page=1), where DataSHIELD is the center piece and it is explained in fine grained detail. 

@@ -38,5 +38,25 @@
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>About</span>"
     ]
+  },
+  {
+    "objectID": "up_2_speed.html",
+    "href": "up_2_speed.html",
+    "title": "Environment setup",
+    "section": "",
+    "text": "This workshop has been concived as an Advanced workshop to provide a guide to develop new DataSHIELD packages. Nevertheless, it may happend that not so experienced users/developers enroll on the workshop or happen to find this online material without prior experience. It is for that matter that this section is included, to provide a basis of knowledge about DataSHIELD before embarking on this short but steep journey.\nHere, we provide different reading materials that will be useful to create a solid basis about DataSHIELD.\n\nDataSHIELD paper: Description of what is DataSHIELD.\nDataSHIELD wiki: Materials about DataSHIELD including:\n\nBeginner material\nRecorded DataSHIELD workshops\nInformation on current release of DataSHIELD\n\nresource book: In this book you will find information about:\n\nDataSHIELD (Section 5)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Environment setup</span>"
+    ]
+  },
+  {
+    "objectID": "up_2_speed.html#footnotes",
+    "href": "up_2_speed.html#footnotes",
+    "title": "Get up to speed",
+    "section": "",
+    "text": "From Xavier Escribà↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Get up to speed</span>"
+    ]
   }
 ]

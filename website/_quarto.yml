@@ -12,6 +12,7 @@ book:
   chapters:
     - index.qmd
     - env_setup.qmd
+    - up_2_speed.qmd
     - about.qmd
   sidebar:
     logo: logo.svg
