@@ -30,7 +30,7 @@ In order to develop, test and push our new DataSHIELD packages, we will require 
 Please prepare your environment before the workshop so no precious time is lost setting up environments during it. Feel free to contact the authors if there are problems setting up the environment.
 :::
 
-## Installing the packages
+## Install guide
 
 When using R, we are used to installing packages with the handy `install.packages()` function. However, by default it uses the CRAN repository, which does not contain all the required packages. For that reason we provide a quick code snippet to install all the required packages:
 

@@ -20,11 +20,11 @@
     ]
   },
   {
-    "objectID": "env_setup.html#installing-the-packages",
-    "href": "env_setup.html#installing-the-packages",
+    "objectID": "env_setup.html#install-guide",
+    "href": "env_setup.html#install-guide",
     "title": "Environment setup",
-    "section": "Installing the packages",
-    "text": "Installing the packages\nWhen using R, we are used to installing packages with the handy install.packages() function. However, by default it uses the CRAN repository, which does not contain all the required packages. For that reason we provide a quick code snippet to install all the required packages:\n\n# Install DSLite\ninstall.packages(\"DSLite\")\n\n# Install DSI\ninstall.packages(\"DSI\")\n\n# Install dsBase\ninstall.packages(\n    'dsBase',\n    repos=c(\n        getOption('repos'),\n        'http://cran.datashield.org'\n    ),\n    dependencies=TRUE\n)\n\n# Install dsBaseClient\ninstall.packages(\n    'dsBaseClient',\n    repos=c(\n        getOption('repos'),\n        'http://cran.datashield.org'\n    ),\n    dependencies=TRUE\n)\n\nWith that, your environment will be ready to take on the workshop. Nevertheless, please read the next sessions to familiarize with R package development if you are not already.",
+    "section": "Install guide",
+    "text": "Install guide\nWhen using R, we are used to installing packages with the handy install.packages() function. However, by default it uses the CRAN repository, which does not contain all the required packages. For that reason we provide a quick code snippet to install all the required packages:\n\n# Install DSLite\ninstall.packages(\"DSLite\")\n\n# Install DSI\ninstall.packages(\"DSI\")\n\n# Install dsBase\ninstall.packages(\n    'dsBase',\n    repos=c(\n        getOption('repos'),\n        'http://cran.datashield.org'\n    ),\n    dependencies=TRUE\n)\n\n# Install dsBaseClient\ninstall.packages(\n    'dsBaseClient',\n    repos=c(\n        getOption('repos'),\n        'http://cran.datashield.org'\n    ),\n    dependencies=TRUE\n)\n\nWith that, your environment will be ready to take on the workshop. Nevertheless, please read the next sessions to familiarize with R package development if you are not already.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Environment setup</span>"
     ]
