@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Get up to speed – DataSHIELD Workshop</title>
+<title>1. DataSHIELD packages structure – DataSHIELD Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1-datashield-packages-structure.html" rel="next">
-<link href="./env_setup.html" rel="prev">
+<link href="./about.html" rel="next">
+<link href="./up_2_speed.html" rel="prev">
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./up_2_speed.html"><span class="chapter-title">Get up to speed</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-datashield-packages-structure.html"><span class="chapter-title">1. DataSHIELD packages structure</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,12 +143,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./up_2_speed.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Get up to speed</span></a>
+  <a href="./up_2_speed.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Get up to speed</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1-datashield-packages-structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1. DataSHIELD packages structure</span></a>
+  <a href="./1-datashield-packages-structure.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">1. DataSHIELD packages structure</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -166,7 +166,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#developing-your-first-r-package" id="toc-developing-your-first-r-package" class="nav-link active" data-scroll-target="#developing-your-first-r-package">Developing your first R package</a></li>
+  <li><a href="#convencions-tipiques-datashiel" id="toc-convencions-tipiques-datashiel" class="nav-link active" data-scroll-target="#convencions-tipiques-datashiel">convencions tipiques datashiel</a></li>
+  <li><a href="#dsi-communicating-from-client-to-server" id="toc-dsi-communicating-from-client-to-server" class="nav-link" data-scroll-target="#dsi-communicating-from-client-to-server">DSI: Communicating from client to server</a>
+  <ul class="collapse">
+  <li><a href="#communication-types" id="toc-communication-types" class="nav-link" data-scroll-target="#communication-types">Communication types</a></li>
+  <li><a href="#exercisi-1" id="toc-exercisi-1" class="nav-link" data-scroll-target="#exercisi-1">Exercisi 1</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -175,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Get up to speed</span></h1>
+<h1 class="title"><span class="chapter-title">1. DataSHIELD packages structure</span></h1>
 </div>
 
 
@@ -199,53 +204,55 @@ p {
 }
 </style>
 </div>
-<p>This workshop has been concived as an Advanced workshop to provide a guide to develop new DataSHIELD packages. Nevertheless, it may happend that not so experienced users/developers enroll on the workshop or happen to find this online material without prior experience. It is for that matter that this section is included, to provide a basis of knowledge about DataSHIELD before embarking on this short but steep journey.</p>
-<p>Here, we provide different reading materials that will be useful to create a solid basis about DataSHIELD.</p>
-<ul>
-<li><a href="https://academic.oup.com/ije/article/43/6/1929/707730?login=true">DataSHIELD paper</a>: Description of what is DataSHIELD.</li>
-<li><a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD wiki</a>: Materials about DataSHIELD including:
-<ul>
-<li>Beginner material</li>
-<li>Recorded DataSHIELD workshops</li>
-<li>Information on current release of DataSHIELD</li>
-</ul></li>
-<li><a href="https://isglobal-brge.github.io/resource_bookdown/">resource book</a>: In this book you will find information about:
-<ul>
-<li>DataSHIELD (Section 5)</li>
-</ul></li>
-</ul>
-<p>Also, a shameless plug <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, if any reader finds this material is not enough, I encourage reading this <a href="https://www.tdx.cat/handle/10803/691737#page=1">PhD thesis</a>, where DataSHIELD is the center piece and it is explained in fine grained detail.</p>
-<section id="developing-your-first-r-package" class="level2">
-<h2 class="anchored" data-anchor-id="developing-your-first-r-package">Developing your first R package</h2>
-<p>During the workshop it will be assumed that the attendats have already prior knowledge about building a regular R package. If that was not the case, we provide some useful links to prepare in advance, as with the environment setup, feel free to contact the authors before the workshop to solve any doubts.</p>
-<ul>
-<li><a href="https://r-pkgs.org/">R packages</a></li>
-<li><a href="https://usethis.r-lib.org/index.html">usethis package</a></li>
-<li><a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">roxygen2</a></li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>DataSHIELD packages have a very particular structure, that is in first instance defined by being a combination of two package that act simultaniously. The reason for this is that when we analyze data through DataSHIELD we have two actors, 1) the client (who does the analysis) and 2) the server (where the data is stored), given the “taking the analysis to the data” approach of DataSHIELD we can easily understand that one package will be communicating from the analyst laptop to the package on the data server.</p>
+<p>We can illustrate this interaction with a simple figure.</p>
+<p>####figura tipica de datashield amb flechetes, igual explicarla una mica</p>
+<section id="convencions-tipiques-datashiel" class="level2">
+<h2 class="anchored" data-anchor-id="convencions-tipiques-datashiel">convencions tipiques datashiel</h2>
+<p>parlar que en general escriurem funcions ds.XX al client i la seva part respectiva al servidor es diura XXDS, doncs en general es normal que una funcio del client tingui com objectiu cridar una altra funcio en particular del servidor, sense ser aixo una regla dor</p>
+</section>
+<section id="dsi-communicating-from-client-to-server" class="level2">
+<h2 class="anchored" data-anchor-id="dsi-communicating-from-client-to-server">DSI: Communicating from client to server</h2>
+<p>Now that we understand why two packages are required, let’s see which tool we have to perform communications between them. The tool that we will use is called <strong>DSI</strong>, short for “DataSHIELD Interface”. This tool will allow us to send queries from the packages on the client to the server ones, as well as recieve the server response with the results that we want to use or show the the researcher.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are not confident in your basic R package building skills, we suggest creating your first package before the workshop.</p>
-<p>A good exercise would be to use the <code>usethis</code> package to setup the basic R package structure, create a simple <code>helloWorld()</code> function and document it using <code>roxygen2</code>.</p>
-<p>Here, you can see how that would looke like once finished. REPO de resultats</p>
+<p>The DSI package is also responsible for creating connections to the server (<code>datashield.login</code>), handling workspaces (<code>datashield.workspaces</code>) and many other stuff, this is not connected to package development.</p>
 </div>
 </div>
+<section id="communication-types" class="level3">
+<h3 class="anchored" data-anchor-id="communication-types">Communication types</h3>
+<p>With DSI there are two different types of communications we can perform, one telling the server to assign the result of a function to a variable, the other telling the server to return the result of a function. It is important to notice that not <em>any</em> function can be used; we, as package developers, will develop a set of functions on the server package and each of them will only be available to be used one way or another, therefore, this information will be specified on the server package (see XXX).</p>
+<p>explicar que aquestes funcions es fan servir al paquet del client per comunicarse amb el servidor</p>
+<section id="assign-functions" class="level4">
+<h4 class="anchored" data-anchor-id="assign-functions">Assign functions</h4>
+<p>ficar exemple de codi DSI::assign etc i explicar doncs que es correra la funcio XX i sassignara el valor a la variable Y AL servidor</p>
+</section>
+<section id="aggregate-functions" class="level4">
+<h4 class="anchored" data-anchor-id="aggregate-functions">Aggregate functions</h4>
+<p>lo mateix per dir que els resultats els podem assignar a una variable al CLIENT, crec que sentendra facil</p>
+</section>
+<section id="datashield-file" class="level4">
+<h4 class="anchored" data-anchor-id="datashield-file">DATASHIELD file</h4>
+<p>explicar que hi ha el datashiel file al paquet del servidor on especificarem quina funcio fa que, ficar alguna especie de ascii folder tree de un paquet tipic de R per explicar on va exactament</p>
+</section>
+</section>
+<section id="exercisi-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercisi-1">Exercisi 1</h3>
+<p>punt 1. crear un nou paquet de R que es digui dsClient que tingui una funcions, una que es diu ds.assignString, que cride una funcio assign del servidor que es diu assignStringDS</p>
+<p>punt 2. crear un nou paquet de R que es diui dsServer que tingui una funcio que rep una variable i la retorna que es diu assignStringDS</p>
+<p>fer code along de tot aixo + tindre un repo amb solucio exercisi 1, 2, etc,</p>
+<p>ara ia tenim el nostre primer paquet, com el testejem? aja punt 2. dsLite, testing packages locally</p>
 
 
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>From Xavier Escribà<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -671,13 +678,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./env_setup.html" class="pagination-link" aria-label="Environment setup">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Environment setup</span></span>
+      <a href="./up_2_speed.html" class="pagination-link" aria-label="Get up to speed">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Get up to speed</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1-datashield-packages-structure.html" class="pagination-link" aria-label="1. DataSHIELD packages structure">
-        <span class="nav-page-text"><span class="chapter-title">1. DataSHIELD packages structure</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./about.html" class="pagination-link" aria-label="About">
+        <span class="nav-page-text"><span class="chapter-title">About</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

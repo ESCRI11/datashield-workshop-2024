@@ -23,4 +23,20 @@ Here, we provide different reading materials that will be useful to create a sol
 + [resource book](https://isglobal-brge.github.io/resource_bookdown/): In this book you will find information about:
     + DataSHIELD (Section 5)
 
-Also, a shameless plug ^[From Xavier Escribà], if any reader finds this material is not enough, I encourage reading my [PhD thesis](https://www.tdx.cat/handle/10803/691737#page=1), where DataSHIELD is the center piece and it is explained in fine grained detail. 
+Also, a shameless plug ^[From Xavier Escribà], if any reader finds this material is not enough, I encourage reading this [PhD thesis](https://www.tdx.cat/handle/10803/691737#page=1), where DataSHIELD is the center piece and it is explained in fine grained detail.
+
+## Developing your first R package
+
+During the workshop it will be assumed that the attendats have already prior knowledge about building a regular R package. If that was not the case, we provide some useful links to prepare in advance, as with the environment setup, feel free to contact the authors before the workshop to solve any doubts.
+
+- [R packages](https://r-pkgs.org/)
+- [usethis package](https://usethis.r-lib.org/index.html)
+- [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
+
+::: {.callout-tip}
+If you are not confident in your basic R package building skills, we suggest creating your first package before the workshop.
+
+A good exercise would be to use the `usethis` package to setup the basic R package structure, create a simple `helloWorld()` function and document it using `roxygen2`.
+
+Here, you can see how that would looke like once finished. REPO de resultats
+:::

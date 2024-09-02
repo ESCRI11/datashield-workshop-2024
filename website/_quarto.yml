@@ -13,6 +13,7 @@ book:
     - index.qmd
     - env_setup.qmd
     - up_2_speed.qmd
+    - 1-datashield-packages-structure.qmd
     - about.qmd
   sidebar:
     logo: logo.svg

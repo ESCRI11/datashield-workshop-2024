@@ -1,0 +1,61 @@
+---
+title: "1. DataSHIELD packages structure"
+format: html
+engine: knitr
+---
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+DataSHIELD packages have a very particular structure, that is in first instance defined by being a combination of two package that act simultaniously. The reason for this is that when we analyze data through DataSHIELD we have two actors, 1) the client (who does the analysis) and 2) the server (where the data is stored), given the "taking the analysis to the data" approach of DataSHIELD we can easily understand that one package will be communicating from the analyst laptop to the package on the data server.
+
+We can illustrate this interaction with a simple figure.
+
+####figura tipica de datashield amb flechetes, igual explicarla una mica
+
+## convencions tipiques datashiel
+
+parlar que en general escriurem funcions ds.XX al client i la seva part respectiva al servidor es diura XXDS, doncs en general es normal que una funcio del client tingui com objectiu cridar una altra funcio en particular del servidor, sense ser aixo una regla dor
+
+## DSI: Communicating from client to server
+
+Now that we understand why two packages are required, let's see which tool we have to perform communications between them. The tool that we will use is called **DSI**, short for "DataSHIELD Interface". This tool will allow us to send queries from the packages on the client to the server ones, as well as recieve the server response with the results that we want to use or show the the researcher.
+
+::: {.callout-note}
+The DSI package is also responsible for creating connections to the server (`datashield.login`), handling workspaces (`datashield.workspaces`) and many other stuff, this is not connected to package development.
+:::
+
+### Communication types
+
+With DSI there are two different types of communications we can perform, one telling the server to assign the result of a function to a variable, the other telling the server to return the result of a function. It is important to notice that not _any_ function can be used; we, as package developers, will develop a set of functions on the server package and each of them will only be available to be used one way or another, therefore, this information will be specified on the server package (see XXX).
+
+explicar que aquestes funcions es fan servir al paquet del client per comunicarse amb el servidor
+
+#### Assign functions
+
+ficar exemple de codi DSI::assign etc i explicar doncs que es correra la funcio XX i sassignara el valor a la variable Y AL servidor
+
+#### Aggregate functions
+
+lo mateix per dir que els resultats els podem assignar a una variable al CLIENT, crec que sentendra facil
+
+#### DATASHIELD file
+
+explicar que hi ha el datashiel file al paquet del servidor on especificarem quina funcio fa que, ficar alguna especie de ascii folder tree de un paquet tipic de R per explicar on va exactament
+
+### Exercisi 1
+
+punt 1. crear un nou paquet de R que es digui dsClient que tingui una funcions, una que es diu ds.assignString, que cride una funcio assign del servidor que es diu assignStringDS
+
+punt 2. crear un nou paquet de R que es diui dsServer que tingui una funcio que rep una variable i la retorna que es diu assignStringDS
+
+fer code along de tot aixo + tindre un repo amb solucio exercisi 1, 2, etc, 
+
+ara ia tenim el nostre primer paquet, com el testejem? aja punt 2. dsLite, testing packages locally
+
+
+
