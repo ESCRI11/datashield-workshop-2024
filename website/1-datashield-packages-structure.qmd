@@ -47,15 +47,37 @@ lo mateix per dir que els resultats els podem assignar a una variable al CLIENT,
 
 explicar que hi ha el datashiel file al paquet del servidor on especificarem quina funcio fa que, ficar alguna especie de ascii folder tree de un paquet tipic de R per explicar on va exactament
 
-### Exercisi 1
+dir que tambe es pot ficar al DESCRIPTION rollo com u fa dsOmics o dsBase.
 
-punt 1. crear un nou paquet de R que es digui dsClient que tingui una funcions, una que es diu ds.assignString, que cride una funcio assign del servidor que es diu assignStringDS
+### Quedarie abans del exercisi parlar de que son els datasources, que es el objecte de login i tal i que es pase a les funcions de DSI
 
-punt 2. crear un nou paquet de R que es diui dsServer que tingui una funcio que rep una variable i la retorna que es diu assignStringDS
+### Exercise 1
 
-fer code along de tot aixo + tindre un repo amb solucio exercisi 1, 2, etc, 
+1. Create two R packages: `dsClient` and `dsServer`
+
+::: {.callout-tip collapse="true"}
+## Tip
+
+Make your life easier by using `usethis::create_package("dsClient")`
+:::
+
+2. On the `dsClient` package create a function named `ds.assignString` that takes as input argument a string, and sends it to the assign function `assignStringDS` from the `dsServer` package.
+
+::: {.callout-tip collapse="true"}
+## Remember
+
+Add `#' @export` on top of your new R function to export it. Then, run `devtools::document()` so it gets added to the `NAMESPACE` file of your package automatically, this will allow you to `library(dsClient)` and be able to call `ds.assignString`.
+:::
+
+3. On the `dsServer` package create a function named `assignStringDS` that takes as input argument a string, and returns that string.
+
+4. Declare the `assignStringDS` as a DataSHIELD assign function.
+
 
 ara ia tenim el nostre primer paquet, com el testejem? aja punt 2. dsLite, testing packages locally
+
+punt X parlar de lo de resources.js per el opal? igual deixar la info per alli per si algu se la vol llegir?
+igual seccio desenvolupar resources//igual aixo es un altre workshop?
 
 
 
