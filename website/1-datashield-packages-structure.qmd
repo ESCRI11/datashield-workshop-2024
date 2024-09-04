@@ -195,12 +195,3 @@ Add `#' @export` on top of your new R function to export it. Then, run `devtools
 3. On the `dsServer` package create a function named `assignStringDS` that takes as input argument a string, and returns that string.
 
 4. Declare the `assignStringDS` as a DataSHIELD assign function.
-
-
-ara ia tenim el nostre primer paquet, com el testejem? aja punt 2. dsLite, testing packages locally
-
-punt X parlar de lo de resources.js per el opal? igual deixar la info per alli per si algu se la vol llegir?
-igual seccio desenvolupar resources//igual aixo es un altre workshop?
-
-
-
