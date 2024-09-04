@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,6 +103,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -176,13 +213,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#convencions-tipiques-datashiel" id="toc-convencions-tipiques-datashiel" class="nav-link active" data-scroll-target="#convencions-tipiques-datashiel">convencions tipiques datashiel</a></li>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link active" data-scroll-target="#naming-conventions">Naming conventions</a>
+  <ul class="collapse">
+  <li><a href="#naming-the-client-package" id="toc-naming-the-client-package" class="nav-link" data-scroll-target="#naming-the-client-package">Naming the client package</a></li>
+  <li><a href="#naming-of-the-server-package" id="toc-naming-of-the-server-package" class="nav-link" data-scroll-target="#naming-of-the-server-package">Naming of the server package</a></li>
+  <li><a href="#function-naming-on-the-client" id="toc-function-naming-on-the-client" class="nav-link" data-scroll-target="#function-naming-on-the-client">Function naming on the client</a></li>
+  <li><a href="#function-naming-on-the-server" id="toc-function-naming-on-the-server" class="nav-link" data-scroll-target="#function-naming-on-the-server">Function naming on the server</a></li>
+  </ul></li>
   <li><a href="#dsi-communicating-from-client-to-server" id="toc-dsi-communicating-from-client-to-server" class="nav-link" data-scroll-target="#dsi-communicating-from-client-to-server">DSI: Communicating from client to server</a>
   <ul class="collapse">
   <li><a href="#communication-types" id="toc-communication-types" class="nav-link" data-scroll-target="#communication-types">Communication types</a></li>
-  <li><a href="#quedarie-abans-del-exercisi-parlar-de-que-son-els-datasources-que-es-el-objecte-de-login-i-tal-i-que-es-pase-a-les-funcions-de-dsi" id="toc-quedarie-abans-del-exercisi-parlar-de-que-son-els-datasources-que-es-el-objecte-de-login-i-tal-i-que-es-pase-a-les-funcions-de-dsi" class="nav-link" data-scroll-target="#quedarie-abans-del-exercisi-parlar-de-que-son-els-datasources-que-es-el-objecte-de-login-i-tal-i-que-es-pase-a-les-funcions-de-dsi">Quedarie abans del exercisi parlar de que son els datasources, que es el objecte de login i tal i que es pase a les funcions de DSI</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
+  <li><a href="#sec-ds-file" id="toc-sec-ds-file" class="nav-link" data-scroll-target="#sec-ds-file">DATASHIELD file</a></li>
+  <li><a href="#sec-datasources" id="toc-sec-datasources" class="nav-link" data-scroll-target="#sec-datasources">The <code>datasources</code> object</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -215,16 +259,48 @@ p {
 }
 </style>
 </div>
-<p>DataSHIELD packages have a very particular structure, that is in first instance defined by being a combination of two package that act simultaniously. The reason for this is that when we analyze data through DataSHIELD we have two actors, 1) the client (who does the analysis) and 2) the server (where the data is stored), given the “taking the analysis to the data” approach of DataSHIELD we can easily understand that one package will be communicating from the analyst laptop to the package on the data server.</p>
+<p>DataSHIELD packages have a very particular structure, that is in first instance defined by being a combination of two package that act simultaniously. The reason for this is that when we analyze data through DataSHIELD we have two actors, <strong>1</strong> the client (who does the analysis) and <strong>2</strong> the server (where the data is stored), given the “taking the analysis to the data” approach of DataSHIELD we can easily understand that one package will be communicating from the analyst laptop to the package on the data server.</p>
 <p>We can illustrate this interaction with a simple figure.</p>
-<p>####figura tipica de datashield amb flechetes, igual explicarla una mica</p>
-<section id="convencions-tipiques-datashiel" class="level2">
-<h2 class="anchored" data-anchor-id="convencions-tipiques-datashiel">convencions tipiques datashiel</h2>
-<p>parlar que en general escriurem funcions ds.XX al client i la seva part respectiva al servidor es diura XXDS, doncs en general es normal que una funcio del client tingui com objectiu cridar una altra funcio en particular del servidor, sense ser aixo una regla dor</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/datashield.png" class="img-fluid figure-img"></p>
+<figcaption>DataSHIELD architecture</figcaption>
+</figure>
+</div>
+<p>Looking at this figure we can clearly identify the two distinct actors. Each of them will use a different analysis package. For that reason when we develop a DataSHIELD package, we are actually developing a collection of two packages that will work in tandem.</p>
+<section id="naming-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="naming-conventions">Naming conventions</h2>
+<p>As with many different software and architectures, there are a set of (somtimes un-) written rules that developers stick to. In this case, no official writting is available, so this document can serve as a starting point.</p>
+<p>First and foremost, use <strong>camelCase</strong> naming convention.</p>
+<section id="naming-the-client-package" class="level3">
+<h3 class="anchored" data-anchor-id="naming-the-client-package">Naming the client package</h3>
+<p>The naming for the client package will follow this rule</p>
+<pre><code>dsXxxClient</code></pre>
+<p>Where <code>Xxx</code> is the actual name. E.g. a metabolomics exposome package could be named <code>dsMetabolomicsClient</code>.</p>
+</section>
+<section id="naming-of-the-server-package" class="level3">
+<h3 class="anchored" data-anchor-id="naming-of-the-server-package">Naming of the server package</h3>
+<p>The server package will use the same <code>Xxx</code> and be named as</p>
+<pre><code>dsXxx</code></pre>
+<p>Following on the metabolomics example we would have <code>dsMetabolomics</code>.</p>
+</section>
+<section id="function-naming-on-the-client" class="level3">
+<h3 class="anchored" data-anchor-id="function-naming-on-the-client">Function naming on the client</h3>
+<p>The naming of functions on the client package will follow</p>
+<pre><code>ds.Xxx</code></pre>
+<p>E.g. in metabolomics <code>ds.ComputeMetaboScore</code>.</p>
+</section>
+<section id="function-naming-on-the-server" class="level3">
+<h3 class="anchored" data-anchor-id="function-naming-on-the-server">Function naming on the server</h3>
+<p>Most times a client function will call a specific one on the server, therefore we name them the same.</p>
+<pre><code>XxxDS</code></pre>
+<p>E.g. in metabolomics <code>ComputeMetaboScoreDS</code>.</p>
+<p>Please note this is not a strict rule, it is just a good practice. If all developers stick to ~ similar ~ rules, the feel for the actual users will be smoother, which will improve engagement on the project.</p>
+</section>
 </section>
 <section id="dsi-communicating-from-client-to-server" class="level2">
 <h2 class="anchored" data-anchor-id="dsi-communicating-from-client-to-server">DSI: Communicating from client to server</h2>
-<p>Now that we understand why two packages are required, let’s see which tool we have to perform communications between them. The tool that we will use is called <strong>DSI</strong>, short for “DataSHIELD Interface”. This tool will allow us to send queries from the packages on the client to the server ones, as well as recieve the server response with the results that we want to use or show the the researcher.</p>
+<p>Now that we understand why two packages are required and how to name them, let’s see which tool we have to perform communications between them. The tool that we will use is called <strong>DSI</strong>, short for “DataSHIELD Interface”. This tool will allow us to send queries from the packages on the client to the server ones, as well as recieve the server response with the results that we want to use or show the the researcher.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -240,27 +316,105 @@ Note
 </div>
 <section id="communication-types" class="level3">
 <h3 class="anchored" data-anchor-id="communication-types">Communication types</h3>
-<p>With DSI there are two different types of communications we can perform, one telling the server to assign the result of a function to a variable, the other telling the server to return the result of a function. It is important to notice that not <em>any</em> function can be used; we, as package developers, will develop a set of functions on the server package and each of them will only be available to be used one way or another, therefore, this information will be specified on the server package (see XXX).</p>
-<p>explicar que aquestes funcions es fan servir al paquet del client per comunicarse amb el servidor</p>
+<p>With DSI there are two different types of communications we can perform, one telling the server to assign the result of a function to a variable, the other telling the server to return the result of a function. It is important to notice that not <em>any</em> function can be used; we, as package developers, will develop a set of functions on the server package and each of them will only be available to be used one way or another, therefore, this information will be specified on the server package (see <a href="#sec-ds-file" class="quarto-xref"><span>DATASHIELD file</span></a>).</p>
+<p>Given that these functions communicate from the client package to the server package, they will only be used on the client package. It is important to note that to function they will require the information to <em>which</em> servers to talk to, more on this in a second (<a href="#sec-datasources" class="quarto-xref"><span>The datasources object</span></a>).</p>
 <section id="assign-functions" class="level4">
 <h4 class="anchored" data-anchor-id="assign-functions">Assign functions</h4>
-<p>ficar exemple de codi DSI::assign etc i explicar doncs que es correra la funcio XX i sassignara el valor a la variable Y AL servidor</p>
+<p>Assign functions, as the name implies, will assign something to the R session that is running on the server. For example if we have loaded a data table, we can write a function that takes the first two columns and assigns it to a new variable.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    Client-&gt;&gt;+Server: Run `helloWorld()` and assign the results to a variable named "hello"
+    Server--&gt;&gt;-Client: Done deal boss (but in silence)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Please note that after running an assign function, the client does not recieve anything, hence (but in silence) on the diagram.</p>
+<p>Code-wise this will look like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DSI<span class="sc">::</span><span class="fu">datashield.assign.expr</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">conns =</span> conns,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbol =</span> <span class="st">"hello"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="fu">call</span>(<span class="st">"helloWorld()"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We are passing to the <code>DSI::datashield.assign.expr</code> function <strong>1</strong> the <code>conns</code> object (more on this here <a href="#sec-datasources" class="quarto-xref"><span>The datasources object</span></a>), <strong>2</strong> the variable where the result will be assigned on the server and <strong>3</strong> the function whose result will be assigned to the new variable.</p>
 </section>
 <section id="aggregate-functions" class="level4">
 <h4 class="anchored" data-anchor-id="aggregate-functions">Aggregate functions</h4>
-<p>lo mateix per dir que els resultats els podem assignar a una variable al CLIENT, crec que sentendra facil</p>
+<p>Aggregate functions will run a function on the server and the result will be sent to the client. Beware, a poorly written function on the server might be able to return raw data to the client, completely defeating the point of using DataSHIELD. The process in this case looks like this</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    Client-&gt;&gt;+Server: Run `helloWorld()` and return me the results of it
+    Server--&gt;&gt;-Client: Done deal boss (sends data to the client)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Code-wise this will look like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>DSI<span class="sc">::</span><span class="fu">datashield.aggregate</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">conns =</span> conns,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr =</span> <span class="fu">call</span>(<span class="st">"helloWorld()"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here in this case the function is returning something, so we can assign it <code>myValue &lt;- DSI::datashield.aggregate(...)</code> and use the value on the client, maybe we want to plot it or just send it to the user directly.</p>
 </section>
-<section id="datashield-file" class="level4">
-<h4 class="anchored" data-anchor-id="datashield-file">DATASHIELD file</h4>
+</section>
+</section>
+<section id="sec-ds-file" class="level2">
+<h2 class="anchored" data-anchor-id="sec-ds-file">DATASHIELD file</h2>
 <p>explicar que hi ha el datashiel file al paquet del servidor on especificarem quina funcio fa que, ficar alguna especie de ascii folder tree de un paquet tipic de R per explicar on va exactament</p>
 <p>dir que tambe es pot ficar al DESCRIPTION rollo com u fa dsOmics o dsBase.</p>
+<pre><code>.
+└── dsServer/
+    ├── R/
+    │   └── ds.function.R
+    ├── inst/
+    │   └── DATASHIELD
+    ├── DESCRIPTION
+    └── NAMESPACE</code></pre>
 </section>
+<section id="sec-datasources" class="level2">
+<h2 class="anchored" data-anchor-id="sec-datasources">The <code>datasources</code> object</h2>
+<p>We have been talking about communicating between the client and the server and telling the server to run things. However, we need some object that contains the information about which server are we talking to. This oject is created by the login functions on DataSHIELD. Here a brief example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>builder <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">newDSLoginBuilder</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>builder<span class="sc">$</span><span class="fu">append</span>(<span class="at">server =</span> <span class="st">"myServer"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">url =</span> <span class="st">"https://myDSserver.org"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">user =</span> <span class="st">"ds_user"</span>, <span class="at">password =</span> <span class="st">"password"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>logindata <span class="ot">&lt;-</span> builder<span class="sc">$</span><span class="fu">build</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>connections <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">datashield.login</span>(<span class="at">logins =</span> logindata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This <code>connection</code> object is what our <code>DSI</code> functions will use to know to which servers to talk. For that reason, on the client functions that we write we will put an argument to pass it. Typically this argument is named <code>datasources</code> and defaults to <code>NULL</code>. It can default to <code>NULL</code> because <code>DSI</code> offers a helper function to search for this object on the client R environment and use it; nevertheless it is important that we can let the user specify which connection object they want to use, maybe someone creates two different connection on the same session and wants to use a certain one with different functions.</p>
+<p>Here is how a typical client function starts and how to use this helper function from <code>DSI</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ds.Function <span class="ot">&lt;-</span> <span class="cf">function</span>(..., <span class="at">datasources =</span> <span class="cn">NULL</span>){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(datasources)) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    datasources <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">datashield.connections_find</span>()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rest of the function</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can see that the function <code>DSI::datashield.connections_find</code> will find the connection object on the environment and use it during the rest of the function call.</p>
 </section>
-<section id="quedarie-abans-del-exercisi-parlar-de-que-son-els-datasources-que-es-el-objecte-de-login-i-tal-i-que-es-pase-a-les-funcions-de-dsi" class="level3">
-<h3 class="anchored" data-anchor-id="quedarie-abans-del-exercisi-parlar-de-que-son-els-datasources-que-es-el-objecte-de-login-i-tal-i-que-es-pase-a-les-funcions-de-dsi">Quedarie abans del exercisi parlar de que son els datasources, que es el objecte de login i tal i que es pase a les funcions de DSI</h3>
-</section>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <ol type="1">
 <li>Create two R packages: <code>dsClient</code> and <code>dsServer</code></li>
 </ol>
@@ -307,7 +461,6 @@ Remember
 <p>punt X parlar de lo de resources.js per el opal? igual deixar la info per alli per si algu se la vol llegir? igual seccio desenvolupar resources//igual aixo es un altre workshop?</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
