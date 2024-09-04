@@ -120,43 +120,63 @@
     ]
   },
   {
-    "objectID": "2-datashield-filters.html",
-    "href": "2-datashield-filters.html",
-    "title": "2. DataSHIELD filters",
+    "objectID": "2-dslite.html",
+    "href": "2-dslite.html",
+    "title": "2. DSLite: Does my package work?",
+    "section": "",
+    "text": "Sending data to my virtual server\nThis simple example we have just seen is pretty nice. However, one might be thinking hey typically I want my server functions to analyze tabular data, which is loaded by the user on the server session and will be used by my functions. We can also simulate this on DSLite to test our packages. Let’s see an example where we will load iris data on the virtual server.\nlibrary(dsBase)\nlibrary(dsBaseClient)\ndata(\"iris\")\nexposures &lt;- iris\nbuilder &lt;- DSI::newDSLoginBuilder()\ndslite.server &lt;- DSLite::newDSLiteServer(\n  tables=list(exposures = exposures),\n  config = DSLite::defaultDSConfiguration(\n    include=c(\"dsBase\")\n  )\n)\nbuilder$append(\n  server = \"server1\",\n  url = \"dslite.server\",\n  table = \"exposures\",\n  driver = \"DSLiteDriver\"\n)\nlogindata.dslite &lt;- builder$build()\nconns &lt;- DSI::datashield.login(\n  logins = logindata.dslite,\n  assign=T,\n  symbol = \"exposures_table\"\n)\nThis will assign the iris dataset to a variable on the server named \"exposures_table\". As before, we can check it\nDSLite::getDSLiteData(\n  conns = conns,\n  symbol = \"exposures_table\"\n)\nPRO tip que amb el dslite puc ficar un browser() a la funcio del servidor per aturar la execucio alli i fer debugging!!!!!!!",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
+    ]
+  },
+  {
+    "objectID": "2-dslite.html#exercise-2",
+    "href": "2-dslite.html#exercise-2",
+    "title": "2. DSLite: Does my package work?",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nara fer que crein una funcio a la que el parametre de entrada es la taula que ovlem entrar al servidor, la agafe, calcule el numero de columnes i u retorne al usuari",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
+    ]
+  },
+  {
+    "objectID": "3-datashield-filters.html",
+    "href": "3-datashield-filters.html",
+    "title": "3. DataSHIELD filters",
     "section": "",
     "text": "Options slot of an R package\nFilter values are only available on the server, as we do not want the analysts to be able to manipulate them, just the data owners. For that reason they are defined on the server packages. More precisely they are defined on the DESCRIPTION file of the R package. This file typically contains information about the author of the package, which dependencies it has, the licensing… more precisely these. However, this file can also contain additional metadata, this feature is what is used to declare filters with their correspondent default values on a DataSHIELD package. Take a look at the dsBase DESCRIPTION file for example.\nNow let’s continue by checking how to access those values within our package functions.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DataSHIELD filters</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>3. DataSHIELD filters</span>"
     ]
   },
   {
-    "objectID": "2-datashield-filters.html#accessing-a-filter-value",
-    "href": "2-datashield-filters.html#accessing-a-filter-value",
-    "title": "2. DataSHIELD filters",
+    "objectID": "3-datashield-filters.html#accessing-a-filter-value",
+    "href": "3-datashield-filters.html#accessing-a-filter-value",
+    "title": "3. DataSHIELD filters",
     "section": "Accessing a filter value",
     "text": "Accessing a filter value\nIn order to retrieve the value of a filter on our package functions we will use the getOption function. If we want to retrieve the value of the my.new.filter filter, we will do:\n\ngetOption(\"my.new.filter\")\n\n\n\n\n\n\n\nNote\n\n\n\nIf we try to retrieve a value of an option that is not defined, it will return NULL, this can be convenient to handle exceptions.\n\n\nFollowing that we can see that if we want to use a filter from dsBase, we just have to take a look at the available ones and use them:\n\ngetOption(\"default.nfilter.glm\")\n\nAlso if we define our own filter (on our package DESCRIPTION file):\n\nOptions:\n    nice.filter=5\n\n\n\n\n\n\n\nFurther info\n\n\n\n\n\nHere we see that the filter contains a numeric variable. However they are not limited to that, they can also contain strings and other R data types.\n\nOptions:\n    even.nicer.filter=\"hello\"\n\n\n\n\nWe retrieve it by:\n\ngetOption(\"nice.filter\")",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DataSHIELD filters</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>3. DataSHIELD filters</span>"
     ]
   },
   {
-    "objectID": "2-datashield-filters.html#exercise-2",
-    "href": "2-datashield-filters.html#exercise-2",
-    "title": "2. DataSHIELD filters",
+    "objectID": "3-datashield-filters.html#exercise-2",
+    "href": "3-datashield-filters.html#exercise-2",
+    "title": "3. DataSHIELD filters",
     "section": "Exercise 2",
     "text": "Exercise 2\nWith this new information, we should be able now to upgrade the server package we created on Exercise 1.\nfer que implementin un filter que es digui “xxxx” i que fasi algo amb lo que ia han fet al exercisi 1.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DataSHIELD filters</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>3. DataSHIELD filters</span>"
     ]
   },
   {
-    "objectID": "3-datashield-disclosure-traps.html",
-    "href": "3-datashield-disclosure-traps.html",
-    "title": "3. DataSHIELD disclosure traps",
+    "objectID": "4-datashield-disclosure-traps.html",
+    "href": "4-datashield-disclosure-traps.html",
+    "title": "4. DataSHIELD disclosure traps",
     "section": "",
     "text": "We",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>3. DataSHIELD disclosure traps</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4. DataSHIELD disclosure traps</span>"
     ]
   },
   {
@@ -166,7 +186,7 @@
     "section": "",
     "text": "About this site",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>About</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>About</span>"
     ]
   }
 ]

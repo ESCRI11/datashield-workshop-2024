@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – DataSHIELD Workshop</title>
+<title>3. DataSHIELD filters – DataSHIELD Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./4-datashield-disclosure-traps.html" rel="prev">
+<link href="./4-datashield-disclosure-traps.html" rel="next">
+<link href="./2-dslite.html" rel="prev">
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html"><span class="chapter-title">About</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3-datashield-filters.html"><span class="chapter-title">3. DataSHIELD filters</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -157,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3-datashield-filters.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3. DataSHIELD filters</span></a>
+  <a href="./3-datashield-filters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3. DataSHIELD filters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -167,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">About</span></a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About</span></a>
   </div>
 </li>
     </ul>
@@ -175,15 +210,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#options-slot-of-an-r-package" id="toc-options-slot-of-an-r-package" class="nav-link active" data-scroll-target="#options-slot-of-an-r-package">Options slot of an R package</a></li>
+  <li><a href="#accessing-a-filter-value" id="toc-accessing-a-filter-value" class="nav-link" data-scroll-target="#accessing-a-filter-value">Accessing a filter value</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">About</span></h1>
+<h1 class="title"><span class="chapter-title">3. DataSHIELD filters</span></h1>
 </div>
 
 
@@ -200,9 +243,96 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site</p>
+<div class="cell">
+<style type="text/css">
+p {
+  text-align: justify
+}
+</style>
+</div>
+<p>We just created our first DataSHIELD package. Cool. Now, let’s continue this journey by taking a look at the filter parameters, how to use them, and how to create new ones.</p>
+<p>If the reader has some prior experience with DataSHIELD, the concept may sound familiar, if not, there is no problem. On the base package, there are a <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714768398/Disclosure+control">collection of filters</a> that affect the behaviour of different functions (of that same package). More precisely they are there to prevent disclosure of individual data, <em>aka</em> the core objective of the technology. These filter values can be configured by the data owners at their own likings.</p>
+<p>This might bring some light to the developers. It is <em>your</em> job to make an analysis package secure. It is <em>your</em> job to implement disclosure traps. DataSHIELD just brings you an infrastructure with the tools to build those security layers.</p>
+<p>Having said that, when we build a new package we have two choices, <strong>1</strong> use the current filter values from <code>dsBase</code>, <strong>2</strong> create our own new filter variables.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that if we choose to use <code>dsBase</code> filter values, that package has to be available on the same environment (Opal Rock Profile or Armadillo Analisis environment) where our new package will run. Generally speaking this will be the case, as the base package is almost mandatory to perform any kind of task, however, it does not need to be like this.</p>
+</div>
+</div>
+<p>Before digging into the two options we just introduced. Let’s take a look at what exactly are these “filter values”, how are defined, and how do they fit within the structure of a regular R package.</p>
+<section id="options-slot-of-an-r-package" class="level2">
+<h2 class="anchored" data-anchor-id="options-slot-of-an-r-package">Options slot of an R package</h2>
+<p>Filter values are only available on the server, as we do not want the analysts to be able to manipulate them, just the data owners. For that reason they are defined on the server packages. More precisely they are defined on the <code>DESCRIPTION</code> file of the R package. This file typically contains information about the author of the package, which dependencies it has, the licensing… more precisely <a href="https://r-pkgs.org/description.html#the-description-file">these</a>. However, this file can also contain <a href="https://r-pkgs.org/description.html#sec-description-custom-fields">additional metadata</a>, this feature is what is used to declare filters with their correspondent default values on a DataSHIELD package. Take a look at the <code>dsBase</code> <a href="https://github.com/datashield/dsBase/blob/master/DESCRIPTION#L185-L196">DESCRIPTION file</a> for example.</p>
+<p>Now let’s continue by checking how to access those values within our package functions.</p>
+</section>
+<section id="accessing-a-filter-value" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-a-filter-value">Accessing a filter value</h2>
+<p>In order to retrieve the value of a filter on our package functions we will use the <code>getOption</code> function. If we want to retrieve the value of the <code>my.new.filter</code> filter, we will do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getOption</span>(<span class="st">"my.new.filter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we try to retrieve a value of an option that is not defined, it will return <code>NULL</code>, this can be convenient to handle exceptions.</p>
+</div>
+</div>
+<p>Following that we can see that if we want to use a filter from <code>dsBase</code>, we just have to take a look at the available ones and use them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getOption</span>(<span class="st">"default.nfilter.glm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Also if we define our own filter (on our package DESCRIPTION file):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Options<span class="sc">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    nice.filter<span class="ot">=</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Further info
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Here we see that the filter contains a numeric variable. However they are not limited to that, they can also contain strings and other R data types.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Options<span class="sc">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    even.nicer.filter<span class="ot">=</span><span class="st">"hello"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>We retrieve it by:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getOption</span>(<span class="st">"nice.filter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<p>With this new information, we should be able now to upgrade the server package we created on Exercise 1.</p>
+<p>fer que implementin un filter que es digui “xxxx” i que fasi algo amb lo que ia han fet al exercisi 1.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -627,11 +757,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./4-datashield-disclosure-traps.html" class="pagination-link" aria-label="4. DataSHIELD disclosure traps">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">4. DataSHIELD disclosure traps</span></span>
+      <a href="./2-dslite.html" class="pagination-link" aria-label="2. DSLite: Does my package work?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">2. DSLite: Does my package work?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./4-datashield-disclosure-traps.html" class="pagination-link" aria-label="4. DataSHIELD disclosure traps">
+        <span class="nav-page-text"><span class="chapter-title">4. DataSHIELD disclosure traps</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -639,4 +772,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

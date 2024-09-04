@@ -14,8 +14,9 @@ book:
     - env_setup.qmd
     - up_2_speed.qmd
     - 1-datashield-packages-structure.qmd
-    - 2-datashield-filters.qmd
-    - 3-datashield-disclosure-traps.qmd
+    - 2-dslite.qmd
+    - 3-datashield-filters.qmd
+    - 4-datashield-disclosure-traps.qmd
     - about.qmd
   sidebar:
     logo: logo.svg

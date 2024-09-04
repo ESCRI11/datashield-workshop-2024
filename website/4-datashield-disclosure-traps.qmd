@@ -1,5 +1,5 @@
 ---
-title: "3. DataSHIELD disclosure traps"
+title: "4. DataSHIELD disclosure traps"
 format: html
 engine: knitr
 ---

@@ -1,0 +1,104 @@
+---
+title: "2. DSLite: Does my package work?"
+format: html
+engine: knitr
+---
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+After completing the first exercise, we have a brand new DataSHIELD package ready. However, how do we know it works?
+
+To assess that, we have in our hands a great tool named `DSLite`. This tool will create a virtual environment that simulates a server on our own computer (!). This will allow us to run our DataSHILED functions, and moreoever it will bring us easy access to the values on the server R session, so we will be able to check if our assign function has worked, it if has assigned what we expected, etc.
+
+We will now setup a script to setup `DSLite` with our new packages and test that they work as we expect.
+
+```{r eval = FALSE}
+library(dsBase)
+library(dsBaseClient)
+library(dsClient)
+library(dsServer)
+builder <- DSI::newDSLoginBuilder()
+dslite.server <- DSLite::newDSLiteServer(
+  config = DSLite::defaultDSConfiguration(
+    include=c("dsBase", "dsServer")
+  )
+)
+builder$append(
+  server = "server1",
+  url = "dslite.server",
+  driver = "DSLiteDriver"
+)
+logindata.dslite <- builder$build()
+conns <- DSI::datashield.login(logindata.dslite)
+```
+
+Now we have created a `DSLite` virtual server and we have the connection object to talk to it. Note that it has the `dsServer` and `dsBase` packages inside of it, so we can use functions from those two packages.
+
+Let's now run our client function
+
+```{r eval = FALSE}
+dsClient::ds.assign.string(
+  object = "myObject",
+  string = "myString"
+)
+```
+
+If our packages are fine, we have now created a variable named `myObject` that contains the string `"myString"`. How can we check this? Let's take a look
+
+```{r eval = FALSE}
+DSLite::getDSLiteData(
+  conns = conns,
+  symbol = "myObject"
+)
+```
+
+## Sending data to my virtual server
+
+This simple example we have just seen is pretty nice. However, one might be thinking _hey_ typically I want my server functions to analyze tabular data, which is loaded by the user on the server session and will be used by my functions. We can also simulate this on `DSLite` to test our packages. Let's see an example where we will load `iris` data on the virtual server.
+
+```{r eval = FALSE}
+library(dsBase)
+library(dsBaseClient)
+data("iris")
+exposures <- iris
+builder <- DSI::newDSLoginBuilder()
+dslite.server <- DSLite::newDSLiteServer(
+  tables=list(exposures = exposures),
+  config = DSLite::defaultDSConfiguration(
+    include=c("dsBase")
+  )
+)
+builder$append(
+  server = "server1",
+  url = "dslite.server",
+  table = "exposures",
+  driver = "DSLiteDriver"
+)
+logindata.dslite <- builder$build()
+conns <- DSI::datashield.login(
+  logins = logindata.dslite,
+  assign=T,
+  symbol = "exposures_table"
+)
+```
+
+This will assign the `iris` dataset to a variable on the server named `"exposures_table"`. As before, we can check it
+
+```{r eval = FALSE}
+DSLite::getDSLiteData(
+  conns = conns,
+  symbol = "exposures_table"
+)
+```
+
+
+PRO tip que amb el dslite puc ficar un browser() a la funcio del servidor per aturar la execucio alli i fer debugging!!!!!!!
+
+## Exercise 2
+
+ara fer que crein una funcio a la que el parametre de entrada es la taula que ovlem entrar al servidor, la agafe, calcule el numero de columnes i u retorne al usuari
