@@ -381,8 +381,8 @@ Note
 </section>
 <section id="sec-ds-file" class="level2">
 <h2 class="anchored" data-anchor-id="sec-ds-file">DATASHIELD file</h2>
-<p>explicar que hi ha el datashiel file al paquet del servidor on especificarem quina funcio fa que, ficar alguna especie de ascii folder tree de un paquet tipic de R per explicar on va exactament</p>
-<p>dir que tambe es pot ficar al DESCRIPTION rollo com u fa dsOmics o dsBase.</p>
+<p>As we have just seen, from the client we can tell the server to run functions and assign the results to an object on the server, or to send the results to the client. However, we as developer can specify which functions are allowed to return values to the client, and which will assign it’s results to the server R session.</p>
+<p>To do that we will add a file named <code>DATASHIELD</code> on our server. More precisely it will be located as follows</p>
 <pre><code>.
 └── dsServer/
     ├── R/
@@ -391,30 +391,51 @@ Note
     │   └── DATASHIELD
     ├── DESCRIPTION
     └── NAMESPACE</code></pre>
+<p>This file is a simple plain text file with the following structure</p>
+<pre><code>AssignMethods:
+  myAssingFunc1DS,
+  myAssingFunc2DS
+AggregateMethods:
+  myAggregateFunc1DS,
+  myAggregateFunc2DS</code></pre>
+<p>Alternatively, we can also include this information into the <code>DESCRIPTION</code> file of our server R package following the same formatting. Refer to <code>dsBase</code> <a href="https://github.com/datashield/dsBase/blob/master/DESCRIPTION#L22-L184"><code>DESCRIPTION</code> file</a> for an example.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Keeping this information on a separate file guarantees a cleaner <code>DESCRIPTION</code> file, specially relevant for extense packages with many functions. Feel free to use any of the two methods at your own judgment.</p>
+</div>
+</div>
 </section>
 <section id="sec-datasources" class="level2">
 <h2 class="anchored" data-anchor-id="sec-datasources">The <code>datasources</code> object</h2>
 <p>We have been talking about communicating between the client and the server and telling the server to run things. However, we need some object that contains the information about which server are we talking to. This oject is created by the login functions on DataSHIELD. Here a brief example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>builder <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">newDSLoginBuilder</span>()</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>builder<span class="sc">$</span><span class="fu">append</span>(<span class="at">server =</span> <span class="st">"myServer"</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">url =</span> <span class="st">"https://myDSserver.org"</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">user =</span> <span class="st">"ds_user"</span>, <span class="at">password =</span> <span class="st">"password"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>logindata <span class="ot">&lt;-</span> builder<span class="sc">$</span><span class="fu">build</span>()</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>connections <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">datashield.login</span>(<span class="at">logins =</span> logindata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>builder <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">newDSLoginBuilder</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>builder<span class="sc">$</span><span class="fu">append</span>(<span class="at">server =</span> <span class="st">"myServer"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">url =</span> <span class="st">"https://myDSserver.org"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">user =</span> <span class="st">"ds_user"</span>, <span class="at">password =</span> <span class="st">"password"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>logindata <span class="ot">&lt;-</span> builder<span class="sc">$</span><span class="fu">build</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>connections <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">datashield.login</span>(<span class="at">logins =</span> logindata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This <code>connection</code> object is what our <code>DSI</code> functions will use to know to which servers to talk. For that reason, on the client functions that we write we will put an argument to pass it. Typically this argument is named <code>datasources</code> and defaults to <code>NULL</code>. It can default to <code>NULL</code> because <code>DSI</code> offers a helper function to search for this object on the client R environment and use it; nevertheless it is important that we can let the user specify which connection object they want to use, maybe someone creates two different connection on the same session and wants to use a certain one with different functions.</p>
 <p>Here is how a typical client function starts and how to use this helper function from <code>DSI</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ds.Function <span class="ot">&lt;-</span> <span class="cf">function</span>(..., <span class="at">datasources =</span> <span class="cn">NULL</span>){</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(datasources)) {</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    datasources <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">datashield.connections_find</span>()</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rest of the function</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ds.Function <span class="ot">&lt;-</span> <span class="cf">function</span>(..., <span class="at">datasources =</span> <span class="cn">NULL</span>){</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(datasources)) {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    datasources <span class="ot">&lt;-</span> DSI<span class="sc">::</span><span class="fu">datashield.connections_find</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rest of the function</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see that the function <code>DSI::datashield.connections_find</code> will find the connection object on the environment and use it during the rest of the function call.</p>
 </section>
@@ -424,7 +445,7 @@ Note
 <li>Create two R packages: <code>dsClient</code> and <code>dsServer</code></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -433,7 +454,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Make your life easier by using <code>usethis::create_package("dsClient")</code></p>
 </div>
@@ -443,7 +464,7 @@ Tip
 <li>On the <code>dsClient</code> package create a function named <code>ds.assignString</code> that takes as input argument a string, and sends it to the assign function <code>assignStringDS</code> from the <code>dsServer</code> package.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -452,7 +473,7 @@ Remember
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Add <code>#' @export</code> on top of your new R function to export it. Then, run <code>devtools::document()</code> so it gets added to the <code>NAMESPACE</code> file of your package automatically, this will allow you to <code>library(dsClient)</code> and be able to call <code>ds.assignString</code>.</p>
 </div>

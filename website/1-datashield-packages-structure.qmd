@@ -128,9 +128,9 @@ Here in this case the function is returning something, so we can assign it `myVa
 
 ## DATASHIELD file {#sec-ds-file}
 
-explicar que hi ha el datashiel file al paquet del servidor on especificarem quina funcio fa que, ficar alguna especie de ascii folder tree de un paquet tipic de R per explicar on va exactament
+As we have just seen, from the client we can tell the server to run functions and assign the results to an object on the server, or to send the results to the client. However, we as developer can specify which functions are allowed to return values to the client, and which will assign it's results to the server R session.
 
-dir que tambe es pot ficar al DESCRIPTION rollo com u fa dsOmics o dsBase.
+To do that we will add a file named `DATASHIELD` on our server. More precisely it will be located as follows
 
 ```
 .
@@ -142,6 +142,23 @@ dir que tambe es pot ficar al DESCRIPTION rollo com u fa dsOmics o dsBase.
     ├── DESCRIPTION
     └── NAMESPACE
 ```
+
+This file is a simple plain text file with the following structure
+
+```
+AssignMethods:
+  myAssingFunc1DS,
+  myAssingFunc2DS
+AggregateMethods:
+  myAggregateFunc1DS,
+  myAggregateFunc2DS
+```
+
+Alternatively, we can also include this information into the `DESCRIPTION` file of our server R package following the same formatting. Refer to `dsBase` [`DESCRIPTION` file](https://github.com/datashield/dsBase/blob/master/DESCRIPTION#L22-L184) for an example.
+
+::: {.callout-note}
+Keeping this information on a separate file guarantees a cleaner `DESCRIPTION` file, specially relevant for extense packages with many functions. Feel free to use any of the two methods at your own judgment.
+:::
 
 ## The `datasources` object {#sec-datasources}
 
