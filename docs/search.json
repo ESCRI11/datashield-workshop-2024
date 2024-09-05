@@ -124,7 +124,17 @@
     "href": "2-dslite.html",
     "title": "2. DSLite: Does my package work?",
     "section": "",
-    "text": "Sending data to my virtual server\nThis simple example we have just seen is pretty nice. However, one might be thinking hey typically I want my server functions to analyze tabular data, which is loaded by the user on the server session and will be used by my functions. We can also simulate this on DSLite to test our packages. Let’s see an example where we will load iris data on the virtual server.\nlibrary(dsBase)\nlibrary(dsBaseClient)\ndata(\"iris\")\nexposures &lt;- iris\nbuilder &lt;- DSI::newDSLoginBuilder()\ndslite.server &lt;- DSLite::newDSLiteServer(\n  tables=list(exposures = exposures),\n  config = DSLite::defaultDSConfiguration(\n    include=c(\"dsBase\")\n  )\n)\nbuilder$append(\n  server = \"server1\",\n  url = \"dslite.server\",\n  table = \"exposures\",\n  driver = \"DSLiteDriver\"\n)\nlogindata.dslite &lt;- builder$build()\nconns &lt;- DSI::datashield.login(\n  logins = logindata.dslite,\n  assign=T,\n  symbol = \"exposures_table\"\n)\nThis will assign the iris dataset to a variable on the server named \"exposures_table\". As before, we can check it\nDSLite::getDSLiteData(\n  conns = conns,\n  symbol = \"exposures_table\"\n)\nPRO tip que amb el dslite puc ficar un browser() a la funcio del servidor per aturar la execucio alli i fer debugging!!!!!!!",
+    "text": "Sending data to my virtual server\nThis simple example we have just seen is pretty nice. However, one might be thinking hey typically I want my server functions to analyze tabular data, which is loaded by the user on the server session and will be used by my functions. We can also simulate this on DSLite to test our packages. Let’s see an example where we will load iris data on the virtual server.\nlibrary(dsBase)\nlibrary(dsBaseClient)\ndata(\"iris\")\nexposures &lt;- iris\nbuilder &lt;- DSI::newDSLoginBuilder()\ndslite.server &lt;- DSLite::newDSLiteServer(\n  tables=list(exposures = exposures),\n  config = DSLite::defaultDSConfiguration(\n    include=c(\"dsBase\")\n  )\n)\nbuilder$append(\n  server = \"server1\",\n  url = \"dslite.server\",\n  table = \"exposures\",\n  driver = \"DSLiteDriver\"\n)\nlogindata.dslite &lt;- builder$build()\nconns &lt;- DSI::datashield.login(\n  logins = logindata.dslite,\n  assign=T,\n  symbol = \"exposures_table\"\n)\nThis will assign the iris dataset to a variable on the server named \"exposures_table\". As before, we can check it\nDSLite::getDSLiteData(\n  conns = conns,\n  symbol = \"exposures_table\"\n)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
+    ]
+  },
+  {
+    "objectID": "2-dslite.html#sending-data-to-my-virtual-server",
+    "href": "2-dslite.html#sending-data-to-my-virtual-server",
+    "title": "2. DSLite: Does my package work?",
+    "section": "",
+    "text": "Pro tip\n\n\n\n\n\nWhen developing code, it is useful to be able to place debug points. This means being able to stop the execution on a certain point and look the environment, run code at that stop point etc. In R, a way of doing that is including browser() statements on the code (more on this here).\nDSLite offers us the possibility of adding them on the server functions, and when we run them the execution will be stopped so we can take debug server functions.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
     ]
@@ -134,7 +144,7 @@
     "href": "2-dslite.html#exercise-2",
     "title": "2. DSLite: Does my package work?",
     "section": "Exercise 2",
-    "text": "Exercise 2\nara fer que crein una funcio a la que el parametre de entrada es la taula que ovlem entrar al servidor, la agafe, calcule el numero de columnes i u retorne al usuari",
+    "text": "Exercise 2\nAs out second exercise of the workshop, we will work on top of Exercise 1 developments.\n\nCreate a new aggregate function on the dsServer package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.\nCreate the correspondent function on dsClient that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.\nTest the new function using DSLite.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
     ]

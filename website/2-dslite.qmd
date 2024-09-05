@@ -96,9 +96,20 @@ DSLite::getDSLiteData(
 )
 ```
 
+::: {.callout-tip collapse="true"}
+## Pro tip
 
-PRO tip que amb el dslite puc ficar un browser() a la funcio del servidor per aturar la execucio alli i fer debugging!!!!!!!
+When developing code, it is useful to be able to place debug points. This means being able to stop the execution on a certain point and look the environment, run code at that stop point etc. In R, a way of doing that is including `browser()` statements on the code (more on this [here](https://adv-r.hadley.nz/debugging.html)).
+
+`DSLite` offers us the possibility of adding them on the server functions, and when we run them the execution will be stopped so we can take debug server functions.
+:::
 
 ## Exercise 2
 
-ara fer que crein una funcio a la que el parametre de entrada es la taula que ovlem entrar al servidor, la agafe, calcule el numero de columnes i u retorne al usuari
+As out second exercise of the workshop, we will work on top of Exercise 1 developments.
+
+1. Create a new aggregate function on the `dsServer` package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.
+
+2. Create the correspondent function on `dsClient` that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.
+
+3. Test the new function using `DSLite`.

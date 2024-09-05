@@ -321,11 +321,32 @@ p {
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbol =</span> <span class="st">"exposures_table"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>PRO tip que amb el dslite puc ficar un browser() a la funcio del servidor per aturar la execucio alli i fer debugging!!!!!!!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pro tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When developing code, it is useful to be able to place debug points. This means being able to stop the execution on a certain point and look the environment, run code at that stop point etc. In R, a way of doing that is including <code>browser()</code> statements on the code (more on this <a href="https://adv-r.hadley.nz/debugging.html">here</a>).</p>
+<p><code>DSLite</code> offers us the possibility of adding them on the server functions, and when we run them the execution will be stopped so we can take debug server functions.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>ara fer que crein una funcio a la que el parametre de entrada es la taula que ovlem entrar al servidor, la agafe, calcule el numero de columnes i u retorne al usuari</p>
+<p>As out second exercise of the workshop, we will work on top of Exercise 1 developments.</p>
+<ol type="1">
+<li><p>Create a new aggregate function on the <code>dsServer</code> package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.</p></li>
+<li><p>Create the correspondent function on <code>dsClient</code> that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.</p></li>
+<li><p>Test the new function using <code>DSLite</code>.</p></li>
+</ol>
 
 
 </section>
