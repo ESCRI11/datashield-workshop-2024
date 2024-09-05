@@ -16,7 +16,7 @@ book:
     - 1-datashield-packages-structure.qmd
     - 2-dslite.qmd
     - 3-datashield-filters.qmd
-    - 4-datashield-disclosure-traps.qmd
+    - 4-datashield-pooled.qmd
     - about.qmd
   sidebar:
     logo: logo.svg

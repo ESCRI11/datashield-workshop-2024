@@ -1,5 +1,5 @@
 ---
-title: "4. DataSHIELD disclosure traps"
+title: "4. Pooled and study-level functions"
 format: html
 engine: knitr
 ---
