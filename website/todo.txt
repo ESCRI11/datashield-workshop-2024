@@ -6,3 +6,4 @@ punt X parlar de lo de resources.js per el opal? igual deixar la info per alli p
 igual seccio desenvolupar resources//igual aixo es un altre workshop?
 
 
+ultima seccio fer servir opalr per pujar el paquet a produccio/deployment (preguntar a algu com feru amb armadillo?)

@@ -212,3 +212,8 @@ Add `#' @export` on top of your new R function to export it. Then, run `devtools
 3. On the `dsServer` package create a function named `assignStringDS` that takes as input argument a string, and returns that string.
 
 4. Declare the `assignStringDS` as a DataSHIELD assign function.
+
+::: {.callout-caution collapse="true"}
+## Exercise solution
+[Open in new tab](https://github.com/ESCRI11/datashield-workshop-2024-exercises/tree/main/Exercise-1){target="_blank"}
+:::

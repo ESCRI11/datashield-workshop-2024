@@ -113,3 +113,8 @@ As out second exercise of the workshop, we will work on top of Exercise 1 develo
 2. Create the correspondent function on `dsClient` (named `ds.getColnames`) that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.
 
 3. Test the new function using `DSLite`.
+
+::: {.callout-caution collapse="true"}
+## Exercise solution
+[Open in new tab](https://github.com/ESCRI11/datashield-workshop-2024-exercises/tree/main/Exercise-2){target="_blank"}
+:::

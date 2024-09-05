@@ -96,3 +96,7 @@ stop("This is my error message")
 
 4. Test your new development using `DSLite`. Does it throw the error we expect?
 
+::: {.callout-caution collapse="true"}
+## Exercise solution
+[Open in new tab](https://github.com/ESCRI11/datashield-workshop-2024-exercises/tree/main/Exercise-3){target="_blank"}
+:::

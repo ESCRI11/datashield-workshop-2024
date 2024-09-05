@@ -38,5 +38,5 @@ If you are not confident in your basic R package building skills, we suggest cre
 
 A good exercise would be to use the `usethis` package to setup the basic R package structure, create a simple `helloWorld()` function and document it using `roxygen2`.
 
-Here, you can see how that would looke like once finished. REPO de resultats
+[Here](https://github.com/ESCRI11/datashield-workshop-2024-exercises/tree/main/Exercise-0/testPackage), you can see how that would looke like once finished.
 :::
