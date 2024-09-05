@@ -343,8 +343,8 @@ Pro tip
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
 <p>As out second exercise of the workshop, we will work on top of Exercise 1 developments.</p>
 <ol type="1">
-<li><p>Create a new aggregate function on the <code>dsServer</code> package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.</p></li>
-<li><p>Create the correspondent function on <code>dsClient</code> that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.</p></li>
+<li><p>Create a new aggregate function (named <code>getColnamesDS</code>) on the <code>dsServer</code> package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.</p></li>
+<li><p>Create the correspondent function on <code>dsClient</code> (named <code>ds.getColnames</code>) that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.</p></li>
 <li><p>Test the new function using <code>DSLite</code>.</p></li>
 </ol>
 

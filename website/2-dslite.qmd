@@ -108,8 +108,8 @@ When developing code, it is useful to be able to place debug points. This means 
 
 As out second exercise of the workshop, we will work on top of Exercise 1 developments.
 
-1. Create a new aggregate function on the `dsServer` package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.
+1. Create a new aggregate function (named `getColnamesDS`) on the `dsServer` package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.
 
-2. Create the correspondent function on `dsClient` that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.
+2. Create the correspondent function on `dsClient` (named `ds.getColnames`) that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.
 
 3. Test the new function using `DSLite`.

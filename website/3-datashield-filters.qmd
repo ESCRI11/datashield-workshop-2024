@@ -73,9 +73,26 @@ We retrieve it by:
 getOption("nice.filter")
 ```
 
-## Exercise 2
+## Exercise 3
 
-With this new information, we should be able now to upgrade the server package we created on Exercise 1.
+For this exercise, we will continue working on our new packges.
 
-fer que implementin un filter que es digui "xxxx" i que fasi algo amb lo que ia han fet al exercisi 1.
+1. Create a new filter named `myFilter`. Set the default value as numeric 3.
+
+2. Modify the `getColnamesDS` function to retrieve the `myFilter` value.
+
+3. If the number of columns of the data frame is less than `myFilter` return an error.
+
+::: {.callout-tip collapse="true"}
+## Errors in `R`
+
+In `R` we can throw errors (or exceptions) using the `stop` function.
+
+E.g.
+```{r eval = FALSE}
+stop("This is my error message")
+```
+:::
+
+4. Test your new development using `DSLite`. Does it throw the error we expect?
 

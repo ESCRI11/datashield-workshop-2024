@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#options-slot-of-an-r-package" id="toc-options-slot-of-an-r-package" class="nav-link active" data-scroll-target="#options-slot-of-an-r-package">Options slot of an R package</a></li>
   <li><a href="#accessing-a-filter-value" id="toc-accessing-a-filter-value" class="nav-link" data-scroll-target="#accessing-a-filter-value">Accessing a filter value</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -326,10 +326,37 @@ Further info
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getOption</span>(<span class="st">"nice.filter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>With this new information, we should be able now to upgrade the server package we created on Exercise 1.</p>
-<p>fer que implementin un filter que es digui “xxxx” i que fasi algo amb lo que ia han fet al exercisi 1.</p>
+<section id="exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
+<p>For this exercise, we will continue working on our new packges.</p>
+<ol type="1">
+<li><p>Create a new filter named <code>myFilter</code>. Set the default value as numeric 3.</p></li>
+<li><p>Modify the <code>getColnamesDS</code> function to retrieve the <code>myFilter</code> value.</p></li>
+<li><p>If the number of columns of the data frame is less than <code>myFilter</code> return an error.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Errors in <code>R</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In <code>R</code> we can throw errors (or exceptions) using the <code>stop</code> function.</p>
+<p>E.g.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"This is my error message"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Test your new development using <code>DSLite</code>. Does it throw the error we expect?</li>
+</ol>
 
 
 </section>

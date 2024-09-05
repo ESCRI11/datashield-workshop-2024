@@ -144,7 +144,7 @@
     "href": "2-dslite.html#exercise-2",
     "title": "2. DSLite: Does my package work?",
     "section": "Exercise 2",
-    "text": "Exercise 2\nAs out second exercise of the workshop, we will work on top of Exercise 1 developments.\n\nCreate a new aggregate function on the dsServer package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.\nCreate the correspondent function on dsClient that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.\nTest the new function using DSLite.",
+    "text": "Exercise 2\nAs out second exercise of the workshop, we will work on top of Exercise 1 developments.\n\nCreate a new aggregate function (named getColnamesDS) on the dsServer package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.\nCreate the correspondent function on dsClient (named ds.getColnames) that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.\nTest the new function using DSLite.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
     ]
@@ -170,11 +170,11 @@
     ]
   },
   {
-    "objectID": "3-datashield-filters.html#exercise-2",
-    "href": "3-datashield-filters.html#exercise-2",
+    "objectID": "3-datashield-filters.html#exercise-3",
+    "href": "3-datashield-filters.html#exercise-3",
     "title": "3. DataSHIELD filters",
-    "section": "Exercise 2",
-    "text": "Exercise 2\nWith this new information, we should be able now to upgrade the server package we created on Exercise 1.\nfer que implementin un filter que es digui “xxxx” i que fasi algo amb lo que ia han fet al exercisi 1.",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nFor this exercise, we will continue working on our new packges.\n\nCreate a new filter named myFilter. Set the default value as numeric 3.\nModify the getColnamesDS function to retrieve the myFilter value.\nIf the number of columns of the data frame is less than myFilter return an error.\n\n\n\n\n\n\n\nErrors in R\n\n\n\n\n\nIn R we can throw errors (or exceptions) using the stop function.\nE.g.\n\nstop(\"This is my error message\")\n\n\n\n\n\nTest your new development using DSLite. Does it throw the error we expect?",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>3. DataSHIELD filters</span>"
     ]
