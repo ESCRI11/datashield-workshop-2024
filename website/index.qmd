@@ -11,6 +11,15 @@ p {
 }
 ```
 
+::: {style="display: flex; justify-content: space-around;"}
+![Image 1](figures/logo1.png){style="height: 81px;"}
+![Image 2](figures/logo2.png){style="height: 81px;"}
+:::
+
+# Funding
+
+This course is an initiative developed by ISGlobal's [Health Analytics Hub](https://www.isglobal.org/en/health-analytics-hub), and has received support from the [Generalitat de Catalunya](https://web.gencat.cat/en/inici/index.html) through the CERCA Program and [Ministry of Research and Universities](https://recercaiuniversitats.gencat.cat/en/inici/) (2021 SGR 01563) and  the [Spanish Ministry of Science and Innovation](https://www.ciencia.gob.es/en/) and [Fondo Europeo de Desarrollo Regional, UE](https://ec.europa.eu/regional_policy/funding/erdf_en) (PID2021-122855OB-I00). This course is part of WP3 of [ATHLETE project](https://athleteproject.eu/).
+
 # Introduction 
 
 This website has been created to host the materials and exercises for the Advanced Users' DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.
@@ -21,12 +30,14 @@ On it you will find reading materials, setup tutorials, the workshop indications
 
 Before the workshop we suggest the atendants to take a look at the “Environment setup” and “Get up to speed” sections. This way they will have their computers with the right software installed to follow the workshop.
 
-Due the nature of this workshop, the attendants are expected to have some notions of R package development, to cover the basics we included a section titled "R packages 101", if you are not familiar with R package development please take a look before the workshop.
+Due the nature of this workshop, the attendants are expected to have some notions of R package development, to cover the basics please follow the material available on the "Get up to speed" section, we suggest participants with limited knowledge of R package development to check that out before taking the workshop.
+
+If the attendant is familiar with R package development, we just advice to follow the "Environment setup" to make sure we spend no time during the workshop installing packages.
 
 # Schedule
 
 To be delivered.
 
-# Acknowledgements
+# Credits
 
-This work is funded by XXX and XXX. Materials developed by Juan R. González (ISGlobal) and Xavier Escribà Montagut (BigOmics Analytics SA).
+Materials developed by Juan R. González (ISGlobal) and Xavier Escribà Montagut (BigOmics Analytics SA).
