@@ -11,4 +11,107 @@ p {
 }
 ```
 
-We
+When we talk about DataSHIELD, we soon heard the words "pooled analysis" or "meta analysis". On this section we will talk about them, what do they mean, and how these things are implemented when building DataSHIELD packages.
+
+## Pooled analysis
+
+A pooled analysis in DataSHIELD is when the statistical result that the researcher recieves, is the same as if all the data of the combined studies were "pooled" together and the operation performed on that; however, when this is achieved in DataSHIELD, there is no patient-level data shared between the analysis servers, only (at most) aggregated statistics (e.g. on an iterative algorithm).
+
+### How we can achieve that?
+
+In many cases, it is not trivial to achieve this. But to dip our toes into the matter, let's discuss a simple case. Let's say we want to compute the mean value of a variable across multiple center.
+
+```{mermaid}
+classDiagram
+    class Server 1{
+      - 10 observations
+      - Mean: 2
+    }
+    class Server 2{
+      - 5 observations
+      - Mean: 4
+    }
+    class Server 3{
+      - 16 observations
+      - Mean: 8
+    }
+    Client <|-- Server 1
+    Client <|-- Server 2
+    Client <|-- Server 3
+    Client : Has all info from
+    Client : the servers.
+    Client : Just has to perform
+    Client : simple maths.
+```
+
+We can recieve information from all the different servers (non-disclosive statistics) and with some simple maths on the client, work out a solution for the global mean.
+
+$$
+\mu_{pooled}=\frac{\sum_{i=1}^{n}N_{i} \mu_i}{\sum_{i=1}^{n}N_i}
+$$
+
+Where $\mu_i$ is the server $i$ average and $N_i$ is the server $i$ number of observations.
+
+### What to do on non trivial cases?
+
+The mean computation is certainly a very easy example. However, we might be interested on performing much more advanced statistical methods on our new packages. Is at that point that our minds have to start working hard, as every method will have each own solution.
+
+One option is to look for solutions in parallelized computer algorithms. If we make a little mental exercise, we can envision the DataSHIELD architecture as a computer CPU with some constraints.
+
+Where each server is a CPU core and they are all orchestrated by a master.
+
+1. Each node/core has access to one part of the data at all computation time.
+2. This data is horizontally partitioned.
+3. Node/cores can communicate with each other, but just with non-disclosive statistics.
+4. Node/cores can communicate with the manager/client, but just with non-disclosive statistics.
+5. Manager/client can communicate with all node/cores, and send them pretty much anything.
+
+With this information in our heads, we can review the literature of already solved parallelization problems on computer science journals, and maybe find algorithms that can be adapted.
+
+Next obvious option is to dig deep into the statistics of our particular problem and work ourselves a solution to solve it.
+
+## Meta analysis
+
+It could be that we do not find a solution to our pooled problem, or that we are not interested on that at all! For that reason we can talk about performing meta analysis or study-level functions.
+
+This kind of functions are fundamentally simpler when it comes to design/implementation and (most importantly) disclosure control. On this kind of functions each server will compute a statistic and send it to the client; then, on the client this statistics will be analyzed using meta-analysis techniques.
+
+Meta-analysis itself is out of scope for this workshop, however, in R there is a very strong package to perform that, called [metafor](https://www.metafor-project.org/doku.php/diagram).
+
+```{mermaid}
+classDiagram
+    class Server 1{
+      - Statistics 1
+    }
+    class Server 2{
+      - Statistics 2
+    }
+    class Server 3{
+      - Statistics 3
+    }
+    Client <|-- Server 1
+    Client <|-- Server 2
+    Client <|-- Server 3
+    Client : Has all info from
+    Client : the servers.
+    Client : Just has to perform
+    Client : meta-analysis.
+```
+
+When developing this kind of functions, the developer has to just implement a function and be sure that the statistics returned by it are non-disclosive. Then, the developer has the option to include the meta-analysis step on the client function, or leave that to the researcher to use their prefered method.
+
+## Exercise 4
+
+On this exercise we will continue developing our packages. This time we will implement the mean function we just described.
+
+1. On the `dsServer` package create an aggregate function named `meanDS`, that takes as input a numeric vector and returns a list with 1) the mean and 2) the length of the input vector.
+
+::: {.callout-caution collapse="true"}
+## Optional
+
+Implement a filter to the `meanDS` function that checks for a minimum length of the vector in order to compute the statistic.
+:::
+
+2. On the `dsClient` package create a function named `ds.mean` that calls the `meanDS` function, recieves the results, and then combines them in order to output a pooled mean.
+
+3. Test your new development using DSLite. Is the mean right?

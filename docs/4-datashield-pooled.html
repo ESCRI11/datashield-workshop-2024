@@ -30,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./about.html" rel="next">
 <link href="./3-datashield-filters.html" rel="prev">
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -69,7 +68,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -166,18 +197,25 @@ ul.task-list li input[type="checkbox"] {
   <a href="./4-datashield-pooled.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4. Pooled and study-level functions</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pooled-analysis" id="toc-pooled-analysis" class="nav-link active" data-scroll-target="#pooled-analysis">Pooled analysis</a>
+  <ul class="collapse">
+  <li><a href="#how-we-can-achieve-that" id="toc-how-we-can-achieve-that" class="nav-link" data-scroll-target="#how-we-can-achieve-that">How we can achieve that?</a></li>
+  <li><a href="#what-to-do-on-non-trivial-cases" id="toc-what-to-do-on-non-trivial-cases" class="nav-link" data-scroll-target="#what-to-do-on-non-trivial-cases">What to do on non trivial cases?</a></li>
+  </ul></li>
+  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis">Meta analysis</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -208,9 +246,130 @@ p {
 }
 </style>
 </div>
-<p>We</p>
+<p>When we talk about DataSHIELD, we soon heard the words “pooled analysis” or “meta analysis”. On this section we will talk about them, what do they mean, and how these things are implemented when building DataSHIELD packages.</p>
+<section id="pooled-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="pooled-analysis">Pooled analysis</h2>
+<p>A pooled analysis in DataSHIELD is when the statistical result that the researcher recieves, is the same as if all the data of the combined studies were “pooled” together and the operation performed on that; however, when this is achieved in DataSHIELD, there is no patient-level data shared between the analysis servers, only (at most) aggregated statistics (e.g.&nbsp;on an iterative algorithm).</p>
+<section id="how-we-can-achieve-that" class="level3">
+<h3 class="anchored" data-anchor-id="how-we-can-achieve-that">How we can achieve that?</h3>
+<p>In many cases, it is not trivial to achieve this. But to dip our toes into the matter, let’s discuss a simple case. Let’s say we want to compute the mean value of a variable across multiple center.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class Server 1{
+      - 10 observations
+      - Mean: 2
+    }
+    class Server 2{
+      - 5 observations
+      - Mean: 4
+    }
+    class Server 3{
+      - 16 observations
+      - Mean: 8
+    }
+    Client &lt;|-- Server 1
+    Client &lt;|-- Server 2
+    Client &lt;|-- Server 3
+    Client : Has all info from
+    Client : the servers.
+    Client : Just has to perform
+    Client : simple maths.
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>We can recieve information from all the different servers (non-disclosive statistics) and with some simple maths on the client, work out a solution for the global mean.</p>
+<p><span class="math display">\[
+\mu_{pooled}=\frac{\sum_{i=1}^{n}N_{i} \mu_i}{\sum_{i=1}^{n}N_i}
+\]</span></p>
+<p>Where <span class="math inline">\(\mu_i\)</span> is the server <span class="math inline">\(i\)</span> average and <span class="math inline">\(N_i\)</span> is the server <span class="math inline">\(i\)</span> number of observations.</p>
+</section>
+<section id="what-to-do-on-non-trivial-cases" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-do-on-non-trivial-cases">What to do on non trivial cases?</h3>
+<p>The mean computation is certainly a very easy example. However, we might be interested on performing much more advanced statistical methods on our new packages. Is at that point that our minds have to start working hard, as every method will have each own solution.</p>
+<p>One option is to look for solutions in parallelized computer algorithms. If we make a little mental exercise, we can envision the DataSHIELD architecture as a computer CPU with some constraints.</p>
+<p>Where each server is a CPU core and they are all orchestrated by a master.</p>
+<ol type="1">
+<li>Each node/core has access to one part of the data at all computation time.</li>
+<li>This data is horizontally partitioned.</li>
+<li>Node/cores can communicate with each other, but just with non-disclosive statistics.</li>
+<li>Node/cores can communicate with the manager/client, but just with non-disclosive statistics.</li>
+<li>Manager/client can communicate with all node/cores, and send them pretty much anything.</li>
+</ol>
+<p>With this information in our heads, we can review the literature of already solved parallelization problems on computer science journals, and maybe find algorithms that can be adapted.</p>
+<p>Next obvious option is to dig deep into the statistics of our particular problem and work ourselves a solution to solve it.</p>
+</section>
+</section>
+<section id="meta-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="meta-analysis">Meta analysis</h2>
+<p>It could be that we do not find a solution to our pooled problem, or that we are not interested on that at all! For that reason we can talk about performing meta analysis or study-level functions.</p>
+<p>This kind of functions are fundamentally simpler when it comes to design/implementation and (most importantly) disclosure control. On this kind of functions each server will compute a statistic and send it to the client; then, on the client this statistics will be analyzed using meta-analysis techniques.</p>
+<p>Meta-analysis itself is out of scope for this workshop, however, in R there is a very strong package to perform that, called <a href="https://www.metafor-project.org/doku.php/diagram">metafor</a>.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class Server 1{
+      - Statistics 1
+    }
+    class Server 2{
+      - Statistics 2
+    }
+    class Server 3{
+      - Statistics 3
+    }
+    Client &lt;|-- Server 1
+    Client &lt;|-- Server 2
+    Client &lt;|-- Server 3
+    Client : Has all info from
+    Client : the servers.
+    Client : Just has to perform
+    Client : meta-analysis.
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>When developing this kind of functions, the developer has to just implement a function and be sure that the statistics returned by it are non-disclosive. Then, the developer has the option to include the meta-analysis step on the client function, or leave that to the researcher to use their prefered method.</p>
+</section>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+<p>On this exercise we will continue developing our packages. This time we will implement the mean function we just described.</p>
+<ol type="1">
+<li>On the <code>dsServer</code> package create an aggregate function named <code>meanDS</code>, that takes as input a numeric vector and returns a list with 1) the mean and 2) the length of the input vector.</li>
+</ol>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Optional
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Implement a filter to the <code>meanDS</code> function that checks for a minimum length of the vector in order to compute the statistic.</p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p>On the <code>dsClient</code> package create a function named <code>ds.mean</code> that calls the <code>meanDS</code> function, recieves the results, and then combines them in order to output a pooled mean.</p></li>
+<li><p>Test your new development using DSLite. Is the mean right?</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -640,9 +799,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./about.html" class="pagination-link" aria-label="About">
-        <span class="nav-page-text"><span class="chapter-title">About</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -650,4 +806,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
