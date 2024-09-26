@@ -27,7 +27,7 @@ Before digging into the two options we just introduced. Let's take a look at wha
 
 ## Options slot of an R package
 
-Filter values are only available on the server, as we do not want the analysts to be able to manipulate them, just the data owners. For that reason they are defined on the server packages. More precisely they are defined on the `DESCRIPTION` file of the R package. This file typically contains information about the author of the package, which dependencies it has, the licensing... more precisely [these](https://r-pkgs.org/description.html#the-description-file). However, this file can also contain [additional metadata](https://r-pkgs.org/description.html#sec-description-custom-fields), this feature is what is used to declare filters with their correspondent default values on a DataSHIELD package. Take a look at the `dsBase` [DESCRIPTION file](https://github.com/datashield/dsBase/blob/master/DESCRIPTION#L185-L196) for example.
+Filter values are only available on the server, as we do not want the analysts to be able to manipulate them, just the data owners. For that reason they are defined on the server packages. More precisely they are defined on the `DATASHIELD` file of the R package. Please note that as discussed on the previous section, this information could go to the `DESCRIPTION` file wit the declaration of aggregate and assign functions as [additional metadata](https://r-pkgs.org/description.html#sec-description-custom-fields). Take a look for example at the `dsBase` [DESCRIPTION file](https://github.com/datashield/dsBase/blob/master/DESCRIPTION#L185-L196). During this workshop we will be using the `DATASHIELD` file.
 
 Now let's continue by checking how to access those values within our package functions.
 
@@ -49,7 +49,7 @@ Following that we can see that if we want to use a filter from `dsBase`, we just
 getOption("default.nfilter.glm")
 ```
 
-Also if we define our own filter (on our package DESCRIPTION file):
+Also if we define our own filter (on our package `DATASHIELD` file):
 
 ```{r eval = FALSE}
 Options:
