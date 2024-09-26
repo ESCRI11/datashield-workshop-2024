@@ -106,7 +106,7 @@ On this exercise we will continue developing our packages. This time we will imp
 
 1. On the `dsServer` package create an aggregate function named `meanDS`, that takes as input a numeric vector and returns a list with 1) the mean and 2) the length of the input vector.
 
-::: {.callout-caution collapse="true"}
+::: {.callout-note collapse="true"}
 ## Optional
 
 Implement a filter to the `meanDS` function that checks for a minimum length of the vector in order to compute the statistic.
