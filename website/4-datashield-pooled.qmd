@@ -112,6 +112,6 @@ On this exercise we will continue developing our packages. This time we will imp
 Implement a filter to the `meanDS` function that checks for a minimum length of the vector in order to compute the statistic.
 :::
 
-2. On the `dsClient` package create a function named `ds.mean` that calls the `meanDS` function, recieves the results, and then combines them in order to output a pooled mean.
+2. On the `dsClient` package create a function named `ds.mean2` that calls the `mean2DS` function, recieves the results, and then combines them in order to output a pooled mean.
 
 3. Test your new development using DSLite. Is the mean right?

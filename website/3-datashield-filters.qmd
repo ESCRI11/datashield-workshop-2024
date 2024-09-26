@@ -77,7 +77,7 @@ getOption("nice.filter")
 
 For this exercise, we will continue working on our new packges.
 
-1. Create a new filter named `myFilter`. Set the default value as numeric 3.
+1. Create a new filter named `myFilter`. Set the default value as numeric 6.
 
 2. Modify the `getColnamesDS` function to retrieve the `myFilter` value.
 

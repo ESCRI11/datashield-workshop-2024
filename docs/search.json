@@ -144,7 +144,7 @@
     "href": "2-dslite.html#exercise-2",
     "title": "2. DSLite: Does my package work?",
     "section": "Exercise 2",
-    "text": "Exercise 2\nAs out second exercise of the workshop, we will work on top of Exercise 1 developments.\n\nCreate a new aggregate function (named getColnamesDS) on the dsServer package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the number of rows of the table.\nCreate the correspondent function on dsClient (named ds.getColnames) that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.\nTest the new function using DSLite.\n\n\n\n\n\n\n\nExercise solution\n\n\n\n\n\nOpen in new tab",
+    "text": "Exercise 2\nAs out second exercise of the workshop, we will work on top of Exercise 1 developments.\n\nCreate a new aggregate function (named getColnamesDS) on the dsServer package. This function will take as input argument a data table (that will be loaded on the server). It will return to the user the column names on the table.\nCreate the correspondent function on dsClient (named ds.getColnames) that calls the server function. This function will take as input argument the name of the server table that we want to get the number of columns.\nTest the new function using DSLite.\n\n\n\n\n\n\n\nExercise solution\n\n\n\n\n\nOpen in new tab",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>2. DSLite: Does my package work?</span>"
     ]
@@ -174,7 +174,7 @@
     "href": "3-datashield-filters.html#exercise-3",
     "title": "3. DataSHIELD filters",
     "section": "Exercise 3",
-    "text": "Exercise 3\nFor this exercise, we will continue working on our new packges.\n\nCreate a new filter named myFilter. Set the default value as numeric 3.\nModify the getColnamesDS function to retrieve the myFilter value.\nIf the number of columns of the data frame is less than myFilter return an error.\n\n\n\n\n\n\n\nErrors in R\n\n\n\n\n\nIn R we can throw errors (or exceptions) using the stop function.\nE.g.\n\nstop(\"This is my error message\")\n\n\n\n\n\nTest your new development using DSLite. Does it throw the error we expect?\n\n\n\n\n\n\n\nExercise solution\n\n\n\n\n\nOpen in new tab",
+    "text": "Exercise 3\nFor this exercise, we will continue working on our new packges.\n\nCreate a new filter named myFilter. Set the default value as numeric 6.\nModify the getColnamesDS function to retrieve the myFilter value.\nIf the number of columns of the data frame is less than myFilter return an error.\n\n\n\n\n\n\n\nErrors in R\n\n\n\n\n\nIn R we can throw errors (or exceptions) using the stop function.\nE.g.\n\nstop(\"This is my error message\")\n\n\n\n\n\nTest your new development using DSLite. Does it throw the error we expect?\n\n\n\n\n\n\n\nExercise solution\n\n\n\n\n\nOpen in new tab",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>3. DataSHIELD filters</span>"
     ]
@@ -214,7 +214,7 @@
     "href": "4-datashield-pooled.html#exercise-4",
     "title": "4. Pooled and study-level functions",
     "section": "Exercise 4",
-    "text": "Exercise 4\nOn this exercise we will continue developing our packages. This time we will implement the mean function we just described.\n\nOn the dsServer package create an aggregate function named meanDS, that takes as input a numeric vector and returns a list with 1) the mean and 2) the length of the input vector.\n\n\n\n\n\n\n\nOptional\n\n\n\n\n\nImplement a filter to the meanDS function that checks for a minimum length of the vector in order to compute the statistic.\n\n\n\n\nOn the dsClient package create a function named ds.mean that calls the meanDS function, recieves the results, and then combines them in order to output a pooled mean.\nTest your new development using DSLite. Is the mean right?",
+    "text": "Exercise 4\nOn this exercise we will continue developing our packages. This time we will implement the mean function we just described.\n\nOn the dsServer package create an aggregate function named meanDS, that takes as input a numeric vector and returns a list with 1) the mean and 2) the length of the input vector.\n\n\n\n\n\n\n\nOptional\n\n\n\n\n\nImplement a filter to the meanDS function that checks for a minimum length of the vector in order to compute the statistic.\n\n\n\n\nOn the dsClient package create a function named ds.mean2 that calls the mean2DS function, recieves the results, and then combines them in order to output a pooled mean.\nTest your new development using DSLite. Is the mean right?",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>4. Pooled and study-level functions</span>"
     ]
