@@ -218,5 +218,35 @@
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>4. Pooled and study-level functions</span>"
     ]
+  },
+  {
+    "objectID": "5-opal.html",
+    "href": "5-opal.html",
+    "title": "5. Uploading packages to servers",
+    "section": "",
+    "text": "Opal\nOpal, developed by OBiBa, is a comprehensive core data management application that plays a vital role in the DataSHIELD infrastructure. This server application delivers a wide range of tools for importing, transforming, and describing data, as well as managing subject identifiers during data import and export processes.\nIn order to upload our server packages to it, we have two distinct methods 1 using the opal web interface, and 2 using the opalr package from our computer. We will focus on the second method on this workshop.\nThe opalr package offers us many administration functionalities; installing packages, uploading data, managing permissions…",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>5. Uploading packages to servers</span>"
+    ]
+  },
+  {
+    "objectID": "5-opal.html#opal",
+    "href": "5-opal.html#opal",
+    "title": "5. Uploading packages to servers",
+    "section": "",
+    "text": "Installing a GitHub hosted package\nThe first option that we will explore is to install a package that is hosted on a GitHub repository. To do that we will do the following.\n\no &lt;- opalr::opal.login(\n    username = \"user\",\n    password = \"password\",\n    url = \"https://myopal.org\"\n)\nopalr::dsadmin.install_github_package(\n    opal = o,\n    pkg = \"repo/package\",\n    ref = \"main\",\n    profile = \"default\"\n)\n\nThe procedure is quite similar to the one of using DataSHIELD, first you need to create a connection to Opal, and then you perform operations on it.\n\n\n\n\n\n\nWarning\n\n\n\nIn order to sucessfully install packages on the Opal, we have to login using an account with administrator privileges. On real world deployments probably we will not have them.\n\n\n\n\nInstalling a local package\nThe second case corresponds to not having the package on GitHub, or maybe in the case we want to test it on an real server before actually putting the code on GitHub.\nFortunatelly opalr also offers the option of uploading the package we have on our computer to the Opal server. In order to do that we have to run the following code\n\no &lt;- opalr::opal.login(\n    username = \"user\",\n    password = \"password\",\n    url = \"https://myopal.org\"\n)\n\nopalr::dsadmin.install_local_package.install_github_package(\n    opal = o,\n    path = devtools::build(),\n    profile = \"default\"\n)\n\n\n\n\n\n\n\nWarning\n\n\n\nFor this to work we need to be running the R session on the working directory where our package is located. We can check our working directory with getwd() and change it with setwd(\"/our/new/path\").",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>5. Uploading packages to servers</span>"
+    ]
+  },
+  {
+    "objectID": "5-opal.html#exercise-5",
+    "href": "5-opal.html#exercise-5",
+    "title": "5. Uploading packages to servers",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\nFind the administration credentials for the opal-demo.obiba.org server.\n\n\n\n\n\n\n\nCredentials\n\n\n\n\n\nUsername: administrator\nPassword: password\n\n\n\n\nPush the package we developed throughout this workshop (dsServer) to the Opal server.\nTest that the package works on the Opal server.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>5. Uploading packages to servers</span>"
+    ]
   }
 ]

@@ -17,6 +17,7 @@ book:
     - 2-dslite.qmd
     - 3-datashield-filters.qmd
     - 4-datashield-pooled.qmd
+    - 5-opal.qmd
   sidebar:
     logo: logo.svg
 

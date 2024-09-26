@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Juan R. González and Xavier Escribà Montagut">
 
-<title>DataSHIELD Workshop</title>
+<title>5. Uploading packages to servers – DataSHIELD Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./env_setup.html" rel="next">
+<link href="./4-datashield-pooled.html" rel="prev">
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5-opal.html"><span class="chapter-title">5. Uploading packages to servers</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -168,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5-opal.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5. Uploading packages to servers</span></a>
+  <a href="./5-opal.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">5. Uploading packages to servers</span></a>
   </div>
 </li>
     </ul>
@@ -181,11 +214,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#funding" id="toc-funding" class="nav-link active" data-scroll-target="#funding">Funding</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits">Credits</a></li>
+  <li><a href="#opal" id="toc-opal" class="nav-link active" data-scroll-target="#opal">Opal</a>
+  <ul class="collapse">
+  <li><a href="#installing-a-github-hosted-package" id="toc-installing-a-github-hosted-package" class="nav-link" data-scroll-target="#installing-a-github-hosted-package">Installing a GitHub hosted package</a></li>
+  <li><a href="#installing-a-local-package" id="toc-installing-a-local-package" class="nav-link" data-scroll-target="#installing-a-local-package">Installing a local package</a></li>
+  </ul></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ESCRI11/datashield-workshop-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -194,19 +228,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DataSHIELD Workshop</h1>
+<h1 class="title"><span class="chapter-title">5. Uploading packages to servers</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Juan R. González and Xavier Escribà Montagut </p>
-          </div>
-  </div>
     
   
     
@@ -224,31 +252,104 @@ p {
 }
 </style>
 </div>
-<div style="display: flex; justify-content: space-around;">
-<p><img src="figures/logo1.png" class="img-fluid" style="height: 81px;" alt="Image 1"> <img src="figures/logo2.png" class="img-fluid" style="height: 81px;" alt="Image 2"></p>
+<p>Upon reaching this point of the workshop, we have seen the basics on how to create DataSHIELD packages and how to make sure that they work on our computers. The next logical step is to upload them to a real server to do the final testing on a real scenario.</p>
+<div class="callout-info">
+<p>On this section we will see how to do this using an Opal server. If anyone from Molgenis would like to contribute a subsection dedicated to Armadillo, please do a PR.</p>
 </div>
-<section id="funding" class="level1">
-<h1>Funding</h1>
-<p>This course is an initiative developed by ISGlobal’s <a href="https://www.isglobal.org/en/health-analytics-hub">Health Analytics Hub</a>, and has received support from the <a href="https://web.gencat.cat/en/inici/index.html">Generalitat de Catalunya</a> through the CERCA Program and <a href="https://recercaiuniversitats.gencat.cat/en/inici/">Ministry of Research and Universities</a> (2021 SGR 01563) and the <a href="https://www.ciencia.gob.es/en/">Spanish Ministry of Science and Innovation</a> and <a href="https://ec.europa.eu/regional_policy/funding/erdf_en">Fondo Europeo de Desarrollo Regional, UE</a> (PID2021-122855OB-I00). This course is part of WP3 of <a href="https://athleteproject.eu/">ATHLETE project</a>.</p>
+<section id="opal" class="level2">
+<h2 class="anchored" data-anchor-id="opal">Opal</h2>
+<p>Opal, developed by OBiBa, is a comprehensive core data management application that plays a vital role in the DataSHIELD infrastructure. This server application delivers a wide range of tools for importing, transforming, and describing data, as well as managing subject identifiers during data import and export processes.</p>
+<p>In order to upload our server packages to it, we have two distinct methods <strong>1</strong> using the opal web interface, and <strong>2</strong> using the <code>opalr</code> package from our computer. We will focus on the second method on this workshop.</p>
+<p>The <code>opalr</code> package offers us many administration functionalities; installing packages, uploading data, managing permissions…</p>
+<section id="installing-a-github-hosted-package" class="level3">
+<h3 class="anchored" data-anchor-id="installing-a-github-hosted-package">Installing a GitHub hosted package</h3>
+<p>The first option that we will explore is to install a package that is hosted on a GitHub repository. To do that we will do the following.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>o <span class="ot">&lt;-</span> opalr<span class="sc">::</span><span class="fu">opal.login</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">username =</span> <span class="st">"user"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">password =</span> <span class="st">"password"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://myopal.org"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>opalr<span class="sc">::</span><span class="fu">dsadmin.install_github_package</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">opal =</span> o,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">pkg =</span> <span class="st">"repo/package"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ref =</span> <span class="st">"main"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">profile =</span> <span class="st">"default"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The procedure is quite similar to the one of using DataSHIELD, first you need to create a connection to Opal, and then you perform operations on it.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In order to sucessfully install packages on the Opal, we have to login using an account with administrator privileges. On real world deployments probably we will not have them.</p>
+</div>
+</div>
 </section>
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>This website has been created to host the materials and exercises for the Advanced Users’ DataSHIELD Workshop, hosted at the Center for Mathematics of the University of Bonn Thursday 26th September 2024.</p>
-<p>On it you will find reading materials, setup tutorials, the workshop indications and practical exercises.</p>
+<section id="installing-a-local-package" class="level3">
+<h3 class="anchored" data-anchor-id="installing-a-local-package">Installing a local package</h3>
+<p>The second case corresponds to not having the package on GitHub, or maybe in the case we want to test it on an real server before actually putting the code on GitHub.</p>
+<p>Fortunatelly <code>opalr</code> also offers the option of uploading the package we have on our computer to the Opal server. In order to do that we have to run the following code</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>o <span class="ot">&lt;-</span> opalr<span class="sc">::</span><span class="fu">opal.login</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">username =</span> <span class="st">"user"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">password =</span> <span class="st">"password"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://myopal.org"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>opalr<span class="sc">::</span><span class="fu">dsadmin.install_local_package.install_github_package</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">opal =</span> o,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> devtools<span class="sc">::</span><span class="fu">build</span>(),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">profile =</span> <span class="st">"default"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this to work we need to be running the R session on the working directory where our package is located. We can check our working directory with <code>getwd()</code> and change it with <code>setwd("/our/new/path")</code>.</p>
+</div>
+</div>
 </section>
-<section id="getting-started" class="level1">
-<h1>Getting started</h1>
-<p>Before the workshop we suggest the atendants to take a look at the “Environment setup” and “Get up to speed” sections. This way they will have their computers with the right software installed to follow the workshop.</p>
-<p>Due the nature of this workshop, the attendants are expected to have some notions of R package development, to cover the basics please follow the material available on the “Get up to speed” section, we suggest participants with limited knowledge of R package development to check that out before taking the workshop.</p>
-<p>If the attendant is familiar with R package development, we just advice to follow the “Environment setup” to make sure we spend no time during the workshop installing packages.</p>
 </section>
-<section id="schedule" class="level1">
-<h1>Schedule</h1>
-<p>To be delivered.</p>
-</section>
-<section id="credits" class="level1">
-<h1>Credits</h1>
-<p>Materials developed by Juan R. González (ISGlobal) and Xavier Escribà Montagut (BigOmics Analytics SA).</p>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+<ol type="1">
+<li>Find the administration credentials for the <a href="opal-demo.obiba.org">opal-demo.obiba.org</a> server.</li>
+</ol>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Credentials
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Username: <code>administrator</code></p>
+<p>Password: <code>password</code></p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><p>Push the package we developed throughout this workshop (<code>dsServer</code>) to the Opal server.</p></li>
+<li><p>Test that the package works on the Opal server.</p></li>
+</ol>
 
 
 </section>
@@ -676,11 +777,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./4-datashield-pooled.html" class="pagination-link" aria-label="4. Pooled and study-level functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">4. Pooled and study-level functions</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./env_setup.html" class="pagination-link" aria-label="Environment setup">
-        <span class="nav-page-text"><span class="chapter-title">Environment setup</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
