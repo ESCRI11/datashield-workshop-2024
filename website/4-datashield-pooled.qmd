@@ -115,3 +115,8 @@ Implement a filter to the `meanDS` function that checks for a minimum length of 
 2. On the `dsClient` package create a function named `ds.mean2` that calls the `mean2DS` function, recieves the results, and then combines them in order to output a pooled mean.
 
 3. Test your new development using DSLite. Is the mean right?
+
+::: {.callout-caution collapse="true"}
+## Exercise solution
+[Open in new tab](https://github.com/ESCRI11/datashield-workshop-2024-exercises/tree/main/Exercise-4){target="_blank"}
+:::
